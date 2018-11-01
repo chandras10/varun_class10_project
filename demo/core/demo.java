@@ -6,6 +6,14 @@ public class demo
         
         SortArray A = new SortArray(10);
         
-        System.out.println(A.values[0]);
+        A.shuffle();
+        A.print();
+        
+        SortAlgorithm algo = new BubbleSort();
+        System.out.println("Algo used for sorting: " + algo.getName());
+        algo.sort(A);
+        System.out.println();
+        algo.printCounters();
+        A.print();
     }
 }
