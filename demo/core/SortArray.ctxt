@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=SortArray
+comment1.params=size
+comment1.target=SortArray(int)
+comment2.params=
+comment2.target=int\ length()
+comment3.params=i\ j
+comment3.target=int\ compare(int,\ int)
+comment4.params=i\ j
+comment4.target=void\ swap(int,\ int)
+comment5.params=
+comment5.target=void\ shuffle()
+comment6.params=
+comment6.target=void\ print()
+numComments=7
