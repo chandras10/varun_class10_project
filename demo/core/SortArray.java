@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class SortArray {
     
-    // fields
+    // instance variables
     
     protected int values[];
     
@@ -25,14 +25,12 @@ public class SortArray {
     // methods
     
     public int length() {
-        
         return values.length;
     }
     
     public int compare(int i, int j) {
         
         if (i < 0 || j < 0 || i >= values.length || j >= values.length) {
-            
             throw new IndexOutOfBoundsException();
         }
         
@@ -64,6 +62,6 @@ public class SortArray {
         
         System.out.println();
     }
-    public static final Random random = new Random();
     
+    public static final Random random = new Random();
 }
