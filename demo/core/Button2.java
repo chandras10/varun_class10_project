@@ -8,7 +8,6 @@ public class Button2 implements ActionListener{
     JButton button2;
     
     public static void main() {
-        
         Button2 gui = new Button2();
         gui.go();
     }
@@ -50,6 +49,7 @@ public class Button2 implements ActionListener{
                 break;
             default:
                 System.out.println("Wrong choice");
+                return;
         } // end switch
         
         System.out.println("Algo used for sorting: " + algo.getName());
