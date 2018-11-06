@@ -5,7 +5,7 @@ public class demo
 {
     public static void main() {
         
-        SortArray A = new SortArray(10);
+        SortArray A = new SortArray(100);
         Scanner sc = new Scanner(System.in);
         
         A.shuffle();
