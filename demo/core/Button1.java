@@ -2,18 +2,18 @@ package demo.core;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class SimpleGui1B implements ActionListener {
+public class Button1 implements ActionListener {
     
     JButton button;
     
     public static void main() {
-        SimpleGui1B gui = new SimpleGui1B();
+        Button1 gui = new Button1();
         gui.go();
     }
     
     public void go() {
         JFrame frame = new JFrame();
-        button = new JButton("Click Me");
+        button = new JButton("Open Calculator");
         
         button.addActionListener(this);
         
@@ -24,6 +24,9 @@ public class SimpleGui1B implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent event) {
-        button.setText("I've been clicked");
+      
+        Calculator calculator = new Calculator();
+        calculator.setVisible(true);
+    
     }
 }
