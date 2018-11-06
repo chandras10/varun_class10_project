@@ -8,19 +8,15 @@ public class SelectionSort extends SortAlgorithm
     
     public void sort(SortArray array) {
 
-        for(int i = 0; i <= array.length(); i++) {
-            
+        int length = array.length();
+        for (int i = 0; i < length; i++) {
             int minIndex = i;
-            for(int j = i + 1; j < array.length(); j++) {
-                
-                if (compare(array, j, minIndex) < 0) {
+            for (int j = i + 1; j < length; j++) {
+                if (compare(array, j, minIndex) < 0)
                     minIndex = j;
-                }
-                
-                swap(array, i, minIndex);
             }
+            swap(array, i, minIndex);
         }
+    
     }
-    
-    
 }
