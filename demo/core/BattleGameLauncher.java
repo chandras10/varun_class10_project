@@ -1,5 +1,5 @@
 package demo.core;
-import java.util.ArrayList;
+import java.util.*;
 
 public class BattleGameLauncher {
     
@@ -40,10 +40,10 @@ public class BattleGameLauncher {
     
     public void startPlaying() {
         
-        while(enemyList.isEmpty() == false) {
+        while(!enemyList.isEmpty()) {
             
-            String guess = helper.getUserInput("enetr a guess");
-            checkUserGuess(guess);
+            String userGuess = helper.getUserInput("enter a guess");
+            checkUserGuess(userGuess);
             
         }//end while
         
@@ -77,10 +77,8 @@ public class BattleGameLauncher {
         
         System.out.println("GAME OVER");
        
-        if (numOfGuesses <= 3)
+        if (numOfGuesses <= 18)
             System.out.println("GOD LEVEL");
-        else if((numOfGuesses > 3) && (numOfGuesses <= 6))
-            System.out.println("GREAT JOB");
         else 
             System.out.println("Nice...");
             
