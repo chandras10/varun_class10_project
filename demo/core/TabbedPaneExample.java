@@ -1,3 +1,5 @@
+package demo.core;
+
 import javax.swing.*; 
 import java.awt.event.*;
 import java.awt.Component;
@@ -26,6 +28,7 @@ TabbedPaneExample(){
     l3 = new JLabel("third Label");
     l3.setBounds(50, 70, 100, 30);
 
+    
     JPanel p1=new JPanel();  
     //p1.add(ta);  
     JPanel p2=new JPanel();  
@@ -41,7 +44,8 @@ TabbedPaneExample(){
     tp.add("Games",p3); 
     tp.add("PlaceHolder", p4);  
 
-
+    
+    
     tp.addChangeListener(new ChangeListener() {
 
         // This method is called whenever the selected tab changes
