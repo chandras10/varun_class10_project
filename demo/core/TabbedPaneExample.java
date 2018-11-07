@@ -33,7 +33,7 @@ TabbedPaneExample(){
     //p1.add(ta);  
     JPanel p2=new JPanel();  
     JPanel p3=new JPanel(); 
-    JButton p4=new JButton("Hit me");
+    Button1 p4=new Button1();
 
     p1.add(l1); p2.add(l2); p3.add(l3); 
     JTabbedPane tp=new JTabbedPane(JTabbedPane.TOP);  
@@ -66,6 +66,8 @@ TabbedPaneExample(){
 
     });
 
+    p4.go();
+    
     f.add(tp);  
      
     f.setLayout(null);  
