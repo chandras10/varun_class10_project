@@ -6,4 +6,4 @@ import java.awt.event.*;
 public class JPanel
 {
     
-}
+}// end class
