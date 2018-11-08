@@ -50,12 +50,12 @@ public class SortDemo implements ActionListener{
         resultPanel = new RedirectedFrame(false, false, null, 700, 600, JFrame.EXIT_ON_CLOSE);
         mainframe.add(controlPanel);
         mainframe.add(sortButton);
-        mainframe.add(resultPanel);
-        //resultPanel.setVisible(false);
+        mainframe.add(resultPanel.getContentPane());
+        mainframe.setAlwaysOnTop (true);
+        resultPanel.setVisible(false);
     }
     
     public void actionPerformed(ActionEvent event) {
-        
         sortButton.setText("Sorting...");
         int n = Integer.parseInt(arraySizeTxtField.getText());
         int choice = sortAlgoList.getSelectedIndex();
@@ -76,7 +76,7 @@ public class SortDemo implements ActionListener{
             } // end switch
         
         A.shuffle();
-        System.out.print("\n\nThe original array is: ");
+        System.out.print("The original array is: ");
         A.print();
         
         System.out.println("Algo used for sorting: " + algo.getName());
@@ -85,11 +85,12 @@ public class SortDemo implements ActionListener{
         algo.printCounters();
         System.out.print("The sorted array is: ");
         A.print();
+        System.out.println("\n");
     }
     
     public static void main() {
         
         SortDemo sorting = new SortDemo();
-        
+
     }
 }
