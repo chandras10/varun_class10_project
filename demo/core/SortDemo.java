@@ -24,7 +24,7 @@ public class SortDemo implements ActionListener{
         mainframe.setSize(700, 600);
         mainframe.setLayout(new GridBagLayout());
         
-        arraySizeLbl = new JLabel("Size of the Array: ");
+        arraySizeLbl = new JLabel("Size of the Array: ", JLabel.RIGHT);
         GridBagConstraints c = new GridBagConstraints();
         c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -38,11 +38,11 @@ public class SortDemo implements ActionListener{
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 0;
-        c.insets = new Insets(20, 5, 5, 5);
+        c.insets = new Insets(20, 5, 5, 500);
         
         mainframe.add(arraySizeTxtField, c);
         
-        sortAlgoTypeLbl = new JLabel("Type of Sort: ");
+        sortAlgoTypeLbl = new JLabel("Type of Sort: ", JLabel.RIGHT);
         c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
@@ -61,6 +61,7 @@ public class SortDemo implements ActionListener{
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 1;
+        c.insets = new Insets(20, 5, 20, 500);
         mainframe.add(sortAlgoList, c);
         
         sortButton = new JButton("Sort");
