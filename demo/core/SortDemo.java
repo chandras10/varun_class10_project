@@ -64,6 +64,7 @@ public class SortDemo implements ActionListener{
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 2;
+        c.gridwidth = 2;
         mainframe.add(sortButton, c);
         
         resultPanel = new RedirectedFrame(false, false, null, 700, 600, JFrame.EXIT_ON_CLOSE);
@@ -72,6 +73,7 @@ public class SortDemo implements ActionListener{
         c.gridx = 0;
         c.gridy = 3;
         c.ipady = 100;
+        c.gridwidth = 2;
         
         mainframe.add(resultPanel.getContentPane(), c);
         mainframe.setAlwaysOnTop (true);
