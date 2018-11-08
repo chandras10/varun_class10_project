@@ -21,7 +21,7 @@ public class SortDemo implements ActionListener{
         
         mainframe = new JFrame("Sorting Demo");
         mainframe.setVisible(true);
-        mainframe.setSize(400, 400);
+        mainframe.setSize(700, 600);
         mainframe.setLayout(new GridBagLayout());
         
         arraySizeLbl = new JLabel("Size of the Array: ");
@@ -30,6 +30,7 @@ public class SortDemo implements ActionListener{
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
+        c.insets = new Insets(20, 5, 5, 5);
         mainframe.add(arraySizeLbl, c);
         
         arraySizeTxtField = new JTextField(6);
@@ -37,13 +38,17 @@ public class SortDemo implements ActionListener{
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 0;
+        c.insets = new Insets(20, 5, 5, 5);
+        
         mainframe.add(arraySizeTxtField, c);
         
-        sortAlgoTypeLbl = new JLabel("Type of Sort: 1) Bubble Sort\n2)Selection Sort");
+        sortAlgoTypeLbl = new JLabel("Type of Sort: ");
         c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 1;
+        c.insets = new Insets(20, 5, 20, 5);
+        
         mainframe.add(sortAlgoTypeLbl, c);
         
         final DefaultComboBoxModel sortAlgoListModel = new DefaultComboBoxModel();
@@ -60,12 +65,14 @@ public class SortDemo implements ActionListener{
         
         sortButton = new JButton("Sort");
         sortButton.addActionListener(this);
-        c.weightx = 0.5;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 2;
-        mainframe.add(sortButton, c);
+        GridBagConstraints cb = new GridBagConstraints();
+        sortButton.setPreferredSize(new Dimension(100, 30));
+        cb.weightx = 0.0;
+        cb.gridx = 0;
+        cb.gridy = 2;
+        cb.gridwidth = 2;
+        cb.insets = new Insets(20, 5, 20, 5);
+        mainframe.add(sortButton, cb);
         
         resultPanel = new RedirectedFrame(false, false, null, 700, 600, JFrame.EXIT_ON_CLOSE);
         c.weightx = 0.5;
@@ -74,6 +81,7 @@ public class SortDemo implements ActionListener{
         c.gridy = 3;
         c.ipady = 100;
         c.gridwidth = 2;
+        c.insets = new Insets(0, 5, 20, 5);
         
         mainframe.add(resultPanel.getContentPane(), c);
         mainframe.setAlwaysOnTop (true);
@@ -111,6 +119,7 @@ public class SortDemo implements ActionListener{
         System.out.print("The sorted array is: ");
         A.print();
         System.out.println("\n");
+        sortButton.setText("Sort");
     }
     
     public static void main() {
