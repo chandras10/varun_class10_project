@@ -10,7 +10,6 @@ public class SortDemo implements ActionListener{
     private int sortAlgoType;
     
     private JFrame mainframe;
-    private JPanel controlPanel;
     private JLabel arraySizeLbl;
     private JLabel sortAlgoTypeLbl;
     private JFrame resultPanel;
@@ -23,34 +22,58 @@ public class SortDemo implements ActionListener{
         mainframe = new JFrame("Sorting Demo");
         mainframe.setVisible(true);
         mainframe.setSize(400, 400);
-        mainframe.setLayout(new GridLayout(3,1));
-        controlPanel = new JPanel();
-        //controlPanel.setSize(100, 100);
-        controlPanel.setLayout(new GridLayout(2,2));
+        mainframe.setLayout(new GridBagLayout());
         
         arraySizeLbl = new JLabel("Size of the Array: ");
+        GridBagConstraints c = new GridBagConstraints();
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 0;
+        mainframe.add(arraySizeLbl, c);
+        
         arraySizeTxtField = new JTextField(6);
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 0;
+        mainframe.add(arraySizeTxtField, c);
+        
         sortAlgoTypeLbl = new JLabel("Type of Sort: 1) Bubble Sort\n2)Selection Sort");
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 1;
+        mainframe.add(sortAlgoTypeLbl, c);
+        
         final DefaultComboBoxModel sortAlgoListModel = new DefaultComboBoxModel();
         sortAlgoListModel.addElement("Bubble Sort");
         sortAlgoListModel.addElement("Selection Sort");
     
         sortAlgoList = new JComboBox(sortAlgoListModel);    
         sortAlgoList.setSelectedIndex(0);
-        
-        controlPanel.add(arraySizeLbl);
-        controlPanel.add(arraySizeTxtField);
-        controlPanel.add(sortAlgoTypeLbl);
-        controlPanel.add(sortAlgoList);
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 1;
+        mainframe.add(sortAlgoList, c);
         
         sortButton = new JButton("Sort");
-        //sortButton.setBounds(100, 50, 100, 50);
         sortButton.addActionListener(this);
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 2;
+        mainframe.add(sortButton, c);
         
         resultPanel = new RedirectedFrame(false, false, null, 700, 600, JFrame.EXIT_ON_CLOSE);
-        mainframe.add(controlPanel);
-        mainframe.add(sortButton);
-        mainframe.add(resultPanel.getContentPane());
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 3;
+        c.ipady = 100;
+        
+        mainframe.add(resultPanel.getContentPane(), c);
         mainframe.setAlwaysOnTop (true);
         resultPanel.setVisible(false);
     }
