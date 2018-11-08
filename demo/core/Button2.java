@@ -6,16 +6,14 @@ import java.util.*;
 public class Button2 implements ActionListener{
     
     JButton button2;
-    
     public static void main() {
         Button2 gui = new Button2();
         gui.go();
     }
     
-    public void go() {
+    public void go() { 
         JFrame frame = new JFrame();
         button2 = new JButton("Open Sorter");
-        
         button2.addActionListener(this);
         
         frame.getContentPane().add(button2);
