@@ -1,9 +1,10 @@
 package demo.core;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Event.*;
+import java.awt.event.*;
 
-public class SortDemo {
+
+public class SortDemo implements ActionListener{
     
     private int arraySize;
     private int sortAlgoType;
@@ -12,7 +13,10 @@ public class SortDemo {
     private JPanel controlPanel;
     private JLabel arraySizeLbl;
     private JLabel sortAlgoTypeLbl;
-    private JPanel resultPanel;
+    private JFrame resultPanel;
+    private JButton sortButton;
+    private JTextField sortAlgoTypeTxtField;
+    private JTextField arraySizeTxtField;
     
     public SortDemo() {
         
@@ -25,22 +29,56 @@ public class SortDemo {
         controlPanel.setLayout(new GridLayout(2,2));
         
         arraySizeLbl = new JLabel("Size of the Array: ");
-        JTextField arraySizeTxtField = new JTextField(6);
-        sortAlgoTypeLbl = new JLabel("Type of Sort: ");
-        JTextField sortAlgoTypeTxtField = new JTextField(6);
+        arraySizeTxtField = new JTextField(6);
+        sortAlgoTypeLbl = new JLabel("Type of Sort: 1) Bubble Sort\n2)Selection Sort");
+        sortAlgoTypeTxtField = new JTextField(6);
         controlPanel.add(arraySizeLbl);
         controlPanel.add(arraySizeTxtField);
         controlPanel.add(sortAlgoTypeLbl);
         controlPanel.add(sortAlgoTypeTxtField);
         
-        JButton sortButton = new JButton("Sort");
-        //sortButton.setSize(50, 10);
+        sortButton = new JButton("Sort");
+        //sortButton.setBounds(100, 50, 100, 50);
+        sortButton.addActionListener(this);
         
-        resultPanel = new JPanel();
+        resultPanel = new RedirectedFrame(false, false, null, 700, 600, JFrame.DO_NOTHING_ON_CLOSE);
         mainframe.add(controlPanel);
         mainframe.add(sortButton);
         mainframe.add(resultPanel);
-        resultPanel.setVisible(false);
+        //resultPanel.setVisible(false);
+    }
+    
+    public void actionPerformed(ActionEvent event) {
+        
+        sortButton.setText("Sorting...");
+        int n = Integer.parseInt(arraySizeTxtField.getText());
+        int choice = Integer.parseInt(sortAlgoTypeTxtField.getText());
+        SortArray A = new SortArray(n);
+        SortAlgorithm algo = null;
+        
+        switch (choice) {
+                
+                case 1:
+                    algo = new BubbleSort();
+                    break;
+                case 2:
+                    algo = new SelectionSort();
+                    break;
+                default:
+                    System.out.println("Wrong choice");
+                    System.out.println();
+            } // end switch
+        
+        A.shuffle();
+        System.out.print("\n\nThe original array is: ");
+        A.print();
+        
+        System.out.println("Algo used for sorting: " + algo.getName());
+        algo.sort(A);
+        System.out.println();
+        algo.printCounters();
+        System.out.print("The sorted array is: ");
+        A.print();
     }
     
     public static void main() {
