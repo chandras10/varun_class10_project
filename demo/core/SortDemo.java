@@ -15,7 +15,7 @@ public class SortDemo implements ActionListener{
     private JLabel sortAlgoTypeLbl;
     private JFrame resultPanel;
     private JButton sortButton;
-    private JTextField sortAlgoTypeTxtField;
+    private JComboBox sortAlgoList;
     private JTextField arraySizeTxtField;
     
     public SortDemo() {
@@ -31,17 +31,23 @@ public class SortDemo implements ActionListener{
         arraySizeLbl = new JLabel("Size of the Array: ");
         arraySizeTxtField = new JTextField(6);
         sortAlgoTypeLbl = new JLabel("Type of Sort: 1) Bubble Sort\n2)Selection Sort");
-        sortAlgoTypeTxtField = new JTextField(6);
+        final DefaultComboBoxModel sortAlgoListModel = new DefaultComboBoxModel();
+        sortAlgoListModel.addElement("Bubble Sort");
+        sortAlgoListModel.addElement("Selection Sort");
+    
+        sortAlgoList = new JComboBox(sortAlgoListModel);    
+        sortAlgoList.setSelectedIndex(0);
+        
         controlPanel.add(arraySizeLbl);
         controlPanel.add(arraySizeTxtField);
         controlPanel.add(sortAlgoTypeLbl);
-        controlPanel.add(sortAlgoTypeTxtField);
+        controlPanel.add(sortAlgoList);
         
         sortButton = new JButton("Sort");
         //sortButton.setBounds(100, 50, 100, 50);
         sortButton.addActionListener(this);
         
-        resultPanel = new RedirectedFrame(false, false, null, 700, 600, JFrame.DO_NOTHING_ON_CLOSE);
+        resultPanel = new RedirectedFrame(false, false, null, 700, 600, JFrame.EXIT_ON_CLOSE);
         mainframe.add(controlPanel);
         mainframe.add(sortButton);
         mainframe.add(resultPanel);
@@ -52,16 +58,16 @@ public class SortDemo implements ActionListener{
         
         sortButton.setText("Sorting...");
         int n = Integer.parseInt(arraySizeTxtField.getText());
-        int choice = Integer.parseInt(sortAlgoTypeTxtField.getText());
+        int choice = sortAlgoList.getSelectedIndex();
         SortArray A = new SortArray(n);
         SortAlgorithm algo = null;
         
         switch (choice) {
                 
-                case 1:
+                case 0:
                     algo = new BubbleSort();
                     break;
-                case 2:
+                case 1:
                     algo = new SelectionSort();
                     break;
                 default:
