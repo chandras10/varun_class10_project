@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.awt.*;
 
 
-public class SimpleGui implements ActionListener {
+public class SimpleGui{
     
     JFrame frame;
     JLabel label;
