@@ -7,48 +7,42 @@ import java.awt.*;
 public class SimpleGui{
     
     JFrame frame;
-    JLabel label;
+    int array[] = new int[6];
     
     public static void main() {
         SimpleGui gui = new SimpleGui();
         gui.go();
     }
     
-    public void actionPerformed(ActionEvent event) {
-        frame.repaint();
-    }
-    
     public void go() {
         
         frame = new JFrame();
+        
+        for(int i = 0; i < array.length; i++) {
+            array[i] = i * 10;
+        }
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JButton colorButton = new JButton("change colours");
-        JButton labelButton = new JButton("change label");
-        label = new JLabel("I'm a label");
         SimpleGui2 gui2 = new SimpleGui2();
-        colorButton.addActionListener(new ColorListener());
-        labelButton.addActionListener(new LabelListener());
-        frame.getContentPane().add(BorderLayout.SOUTH, colorButton);
-        frame.getContentPane().add(BorderLayout.EAST, labelButton);
         frame.getContentPane().add(BorderLayout.CENTER,gui2);
-        frame.getContentPane().add(BorderLayout.WEST,label);
         frame.setSize(500, 500);
         frame.setVisible(true);
         
     }
     
-    class LabelListener implements ActionListener {
+    public class SimpleGui2 extends JPanel {
         
-        public void actionPerformed(ActionEvent event) {
-            label.setText("I've been clicked");
-        }
-        
-    }
-    
-    class ColorListener implements ActionListener {
-        
-        public void actionPerformed(ActionEvent event) {
-            frame.repaint();
+        public void paintComponent(Graphics g) {
+            
+            g.fillRect(0, 0, this.getWidth(), this.getHeight());
+            g.setColor(Color.orange);
+            int k = 0;
+            
+            for (int a = 0; a < array.length; a++) {
+                g.fillRect(k, 300, 50, array[a]);
+                k += 55;
+                frame.repaint();
+            }
         }
         
     }
