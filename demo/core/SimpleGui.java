@@ -1,9 +1,10 @@
-package demo.core;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.lang.Math.*;
+
 
 public class SimpleGui extends JPanel implements ActionListener{
     
@@ -23,14 +24,21 @@ public class SimpleGui extends JPanel implements ActionListener{
        
         m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.shuffle(m_array);
+
+        JScrollPane scrollPane = new JScrollPane(this,
+            JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
+            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        //scrollPane.setPreferredScrollableViewportSize(500, 500);
+        m_frame.add(scrollPane);
+        m_frame.getContentPane().add(scrollPane);
         m_frame.getContentPane().add(BorderLayout.CENTER,this);
         m_frame.getContentPane().add(BorderLayout.NORTH,m_button);
         m_frame.setSize(500, 500);
         m_frame.setVisible(true);
     }
     
-    public static void main() {
-        SimpleGui gui = new SimpleGui(8);
+    public static void main(String[] args) {
+        SimpleGui gui = new SimpleGui(Integer.parseInt(args[0]));
     }
     
     public void shuffle(int values[]) {
@@ -49,11 +57,14 @@ public class SimpleGui extends JPanel implements ActionListener{
             g.setColor(Color.orange);
             int j, k = 0;
             int w = this.getHeight() - 10;
+            int canvasWidth = Math.max((m_frame.getWidth()/m_array.length), 5);
             
             for (int a = 0; a < m_array.length; a++) {
                 j = m_array[a] * 10 + 10; //Scaling the array value to make the bars visible
-                g.fillRect(k, w - j, 50, j);
-                k += 55;
+                
+
+                g.fillRect(k, w - j, canvasWidth, j);
+                k += canvasWidth + 5;
             }
             
     }    
@@ -75,17 +86,13 @@ public class SimpleGui extends JPanel implements ActionListener{
             m_array[minIndex] = m_array[i];
             m_array[i] = temp;
             
-            System.out.println(i);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(Math.max(10, 5000/m_array.length));
             }catch(InterruptedException ex){
                 Thread.currentThread().interrupt();
             }
             
-            this.revalidate();
-            this.repaint();
-            m_frame.getContentPane().revalidate();
-            m_frame.getContentPane().repaint();
+            this.paintImmediately(0, 0, m_frame.getWidth(), m_frame.getHeight());
         }
         
         
