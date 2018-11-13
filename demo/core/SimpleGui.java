@@ -5,17 +5,32 @@ import java.awt.*;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class SimpleGui implements ActionListener{
+public class SimpleGui extends JPanel implements ActionListener{
     
-    JFrame frame;
-    SimpleGui2 gui2;
-    JButton button;
-    int array[] = new int[8];
-    SimpleGui shuffler;
+    JFrame m_frame;
+    JButton m_button;
+    int m_array[];
+    
+    public SimpleGui(int i) {
+        m_frame = new JFrame();
+        //this.add(m_frame);
+        m_button = new JButton("Sort the array");
+        m_array = new int[i];
+        for(int n = 0; n < m_array.length; n++) {
+            m_array[n] = n;
+        }
+        m_button.addActionListener(this);
+       
+        m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.shuffle(m_array);
+        m_frame.getContentPane().add(BorderLayout.CENTER,this);
+        m_frame.getContentPane().add(BorderLayout.NORTH,m_button);
+        m_frame.setSize(500, 500);
+        m_frame.setVisible(true);
+    }
     
     public static void main() {
-        SimpleGui gui = new SimpleGui();
-        gui.go();
+        SimpleGui gui = new SimpleGui(8);
     }
     
     public void shuffle(int values[]) {
@@ -28,73 +43,53 @@ public class SimpleGui implements ActionListener{
             
         }
     }
-    
-    public void go() {
+
+    public void paintComponent(Graphics g) {
+            g.fillRect(0, 0, this.getWidth(), this.getHeight());
+            g.setColor(Color.orange);
+            int j, k = 0;
+            int w = this.getHeight() - 10;
+            
+            for (int a = 0; a < m_array.length; a++) {
+                j = m_array[a] * 10 + 10; //Scaling the array value to make the bars visible
+                g.fillRect(k, w - j, 50, j);
+                k += 55;
+            }
+            
+    }    
         
-        frame = new JFrame();
-        button = new JButton("Sort the array");
-        button.addActionListener(this);
-        
-        for(int i = 0; i < array.length; i++) {
-            array[i] = (i * 10) + 10;
-        }
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gui2 = new SimpleGui2();
-        shuffler = new SimpleGui();
-        shuffler.shuffle(array);
-        frame.getContentPane().add(BorderLayout.CENTER,gui2);
-        frame.getContentPane().add(BorderLayout.NORTH,button);
-        frame.setSize(500, 500);
-        frame.setVisible(true);
-        
-    }
     public void actionPerformed(ActionEvent event) {
 
         int temp;
         int j = 0;
-        int length = array.length;
+        int length = m_array.length;
         for (int i = 0; i < length; i++) {
             int minIndex = i;
             for (j = i ; j < length; j++) {
                 
-                if (array[j] < array[minIndex])
+                if (m_array[j] < m_array[minIndex])
                     minIndex = j;
             }
 
-            temp = array[minIndex];
-            array[minIndex] = array[i];
-            array[i] = temp;
+            temp = m_array[minIndex];
+            m_array[minIndex] = m_array[i];
+            m_array[i] = temp;
             
+            System.out.println(i);
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             }catch(InterruptedException ex){
                 Thread.currentThread().interrupt();
             }
             
-            SimpleGui2 gui3 = new SimpleGui2();
-            
+            this.revalidate();
+            this.repaint();
+            m_frame.getContentPane().revalidate();
+            m_frame.getContentPane().repaint();
         }
         
         
     }
-    
-    public class SimpleGui2 extends JPanel {
-        
-        public void paintComponent(Graphics g) {
-            
-            g.fillRect(0, 0, this.getWidth(), this.getHeight());
-            g.setColor(Color.orange);
-            int k = 0;
-            int w = this.getHeight() - 10;
-            
-            for (int a = 0; a < array.length; a++) {
-                g.fillRect(k, w - array[a], 50, array[a]);
-                k += 55;
-            }
-            
-            frame.repaint();
-        }    
-    }    
     
     public static final Random random = new Random();
 }
