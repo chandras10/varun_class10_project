@@ -10,7 +10,7 @@ public class SimpleGui implements ActionListener{
     JFrame frame;
     SimpleGui2 gui2;
     JButton button;
-    int array[] = new int[5];
+    int array[] = new int[8];
     SimpleGui shuffler;
     
     public static void main() {
