@@ -20,10 +20,11 @@ public class SimpleGui implements ActionListener{
     
     public void shuffle(int values[]) {
         
-        for (int i = values.length - 1; i > 0; i--) {
+        for (int i = values.length - 1; i >= 0; i--) {
+            int randomValue = random.nextInt(i+1);
             int temp = values[i];
-            values[i] = values[random.nextInt(i+1)];
-            values[random.nextInt(i+1)] = temp;
+            values[i] = values[randomValue];
+            values[randomValue] = temp;
             
         }
     }
@@ -34,8 +35,8 @@ public class SimpleGui implements ActionListener{
         button = new JButton("Sort the array");
         button.addActionListener(this);
         
-        for(int i = 1; i < array.length; i++) {
-            array[i] = i * 10;
+        for(int i = 0; i < array.length; i++) {
+            array[i] = (i * 10) + 10;
         }
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui2 = new SimpleGui2();

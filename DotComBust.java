@@ -1,4 +1,4 @@
-package chap06;
+ 
 import helpers.GameHelper;
 
 import java.util.*;
