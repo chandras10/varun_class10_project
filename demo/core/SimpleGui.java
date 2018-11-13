@@ -1,3 +1,5 @@
+package demo.core;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -57,14 +59,13 @@ public class SimpleGui extends JPanel implements ActionListener{
             g.setColor(Color.orange);
             int j, k = 0;
             int w = this.getHeight() - 10;
-            int canvasWidth = Math.max((m_frame.getWidth()/m_array.length), 5);
+            int barWidth = Math.max((m_frame.getWidth()/m_array.length), 5);
+            int barHeight = Math.min((m_frame.getHeight()/m_array.length), 10);
             
             for (int a = 0; a < m_array.length; a++) {
-                j = m_array[a] * 10 + 10; //Scaling the array value to make the bars visible
-                
-
-                g.fillRect(k, w - j, canvasWidth, j);
-                k += canvasWidth + 5;
+                j = (m_array[a]+1) * barHeight; //Scaling the array value to make the bars visible
+                g.fillRect(k, w - j, barWidth, j);
+                k += barWidth + 5;
             }
             
     }    
