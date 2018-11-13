@@ -37,7 +37,7 @@ TabbedPaneExample(){
     Button1 p4=new Button1();
 
     p1.add(l1); p2.add(l2); p3.add(l3); 
-    JTabbedPane tp=new JTabbedPane(JTabbedPane.TOP);  
+    JTabbedPane tp=new JTabbedPane(JTabbedPane.BOTTOM);  
     //tp.setBounds(50,50,200,200); 
     tp.setBounds(f.getLocation().x+2, f.getLocation().y+2, f.getWidth()-100, f.getHeight()-100);
     tp.add("Sorter",p1);  
