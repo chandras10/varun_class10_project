@@ -104,5 +104,7 @@ public class SimpleGui extends JPanel implements ActionListener{
         
     }
     
+    
+    
     public static final Random random = new Random();
 }

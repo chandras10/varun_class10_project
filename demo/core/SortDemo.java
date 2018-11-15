@@ -10,13 +10,12 @@ public class SortDemo implements ActionListener{
     private JFrame mainframe;
     private JLabel arraySizeLbl;
     private JLabel sortAlgoTypeLbl;
-    private JFrame resultPanel;
+    //private JLabel error;
     private JButton sortButton;
     private JComboBox sortAlgoList;
     private JTextField arraySizeTxtField;
 
     public SortDemo() {
-
         mainframe = new JFrame("Sorting Demo");
         mainframe.setVisible(true);
         mainframe.setSize(700, 600);
@@ -29,8 +28,18 @@ public class SortDemo implements ActionListener{
         c.gridx = 0;
         c.gridy = 0;
         c.insets = new Insets(20, 5, 5, 5);
+        
         mainframe.add(arraySizeLbl, c);
-
+        
+        /*error = new JLabel("", JLabel.LEFT);
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 2;
+        c.gridy = 0;
+        c.insets = new Insets(20, 5, 5, 500);
+        
+        mainframe.add(error, c);*/
+        
         arraySizeTxtField = new JTextField(3);
         c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -39,6 +48,7 @@ public class SortDemo implements ActionListener{
         c.insets = new Insets(20, 5, 5, 500);
 
         mainframe.add(arraySizeTxtField, c);
+        
 
         sortAlgoTypeLbl = new JLabel("Type of Sort: ", JLabel.RIGHT);
         c.weightx = 0.5;
@@ -84,7 +94,7 @@ public class SortDemo implements ActionListener{
             n = Integer.parseInt(arraySizeTxtField.getText());
 
             if(n > 500) {
-                System.out.println("enter a value below 500...");
+                arraySizeLbl.setText("enter a value below 500...");
                 arraySizeTxtField.setText(null);
                 arraySizeTxtField.requestFocus();    
                 sortButton.requestFocus();
@@ -92,6 +102,8 @@ public class SortDemo implements ActionListener{
             }
             flag = false;
         } // end while
+        
+        arraySizeLbl.setText("Size of the Array: ");
         sortButton.setText("Sorting...");        
         int choice = sortAlgoList.getSelectedIndex();
         SortArray A = new SortArray(n);
