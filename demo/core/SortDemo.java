@@ -112,28 +112,13 @@ public class SortDemo implements ActionListener{
         switch (choice) {
 
             case 0:
-            algo = new BubbleSort();
-            break;
+                algo = new BubbleSort();
+                break;
             case 1:
-            algo = new SelectionSort();
-            break;
-            default:
-            System.out.println("Wrong choice");
-            System.out.println();
+                algo = new SelectionSort();
+                break;
         } // end switch
 
-        /*A.shuffle();
-        System.out.print("The original array is: ");
-        A.print();
-
-        System.out.println("Algo used for sorting: " + algo.getName());
-        algo.sort(A);
-        System.out.println();
-        algo.printCounters();
-        System.out.print("The sorted array is: ");
-        A.print();
-        System.out.println("\n");
-        sortButton.setText("Sort");*/
         SimpleGui sorter = new SimpleGui(n);
         mainframe.setVisible(false);
     }

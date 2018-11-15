@@ -101,10 +101,7 @@ public class SimpleGui extends JPanel implements ActionListener{
             m_state[minIndex] = m_state[i] = false;
         }
         
-        
     }
-    
-    
     
     public static final Random random = new Random();
 }
