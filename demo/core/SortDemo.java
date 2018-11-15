@@ -33,7 +33,7 @@ public class SortDemo implements ActionListener{
         c.insets = new Insets(20, 5, 5, 5);
         mainframe.add(arraySizeLbl, c);
         
-        arraySizeTxtField = new JTextField(6);
+        arraySizeTxtField = new JTextField(3);
         c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -75,18 +75,7 @@ public class SortDemo implements ActionListener{
         cb.insets = new Insets(20, 5, 20, 5);
         mainframe.add(sortButton, cb);
         
-        resultPanel = new RedirectedFrame(false, false, null, 700, 600, JFrame.EXIT_ON_CLOSE);
-        c.weightx = 0.5;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 3;
-        c.ipady = 100;
-        c.gridwidth = 2;
-        c.insets = new Insets(0, 5, 20, 5);
-        
-        mainframe.add(resultPanel.getContentPane(), c);
         mainframe.setAlwaysOnTop (true);
-        resultPanel.setVisible(false);
     }
     
     public void actionPerformed(ActionEvent event) {
@@ -109,7 +98,7 @@ public class SortDemo implements ActionListener{
                     System.out.println();
             } // end switch
         
-        A.shuffle();
+        /*A.shuffle();
         System.out.print("The original array is: ");
         A.print();
         
@@ -120,7 +109,9 @@ public class SortDemo implements ActionListener{
         System.out.print("The sorted array is: ");
         A.print();
         System.out.println("\n");
-        sortButton.setText("Sort");
+        sortButton.setText("Sort");*/
+        SimpleGui sorter = new SimpleGui(n);
+        
     }
     
     public static void main() {
