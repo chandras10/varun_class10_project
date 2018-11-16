@@ -13,6 +13,7 @@ public class SimpleGui extends JPanel implements ActionListener{
     JFrame m_frame;
     JButton m_button;
     int m_array[];
+    JScrollPane scroller;
     boolean m_state[];
     
     public SimpleGui(int i) {
@@ -65,11 +66,16 @@ public class SimpleGui extends JPanel implements ActionListener{
                     g.setColor(Color.red);
                 else
                     g.setColor(Color.orange);
+                    
                 j = (m_array[a]+1) * barHeight; //Scaling the array value to make the bars visible
                 g.fillRect(k, w - j, barWidth, j);
                 k += barWidth + 5;
                 
             }
+            scroller = new JScrollPane();
+            scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+            scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+            m_frame.getContentPane().add(BorderLayout.SOUTH, scroller);
             
     }    
         
@@ -83,10 +89,8 @@ public class SimpleGui extends JPanel implements ActionListener{
                 
                 if (m_array[j] < m_array[minIndex])
                     minIndex = j;
-                    
-                m_state[minIndex] = m_state[i] = true;
             }
-
+            m_state[minIndex] = m_state[i] = true;
             int temp = m_array[minIndex];
             m_array[minIndex] = m_array[i];
             m_array[i] = temp;
