@@ -83,6 +83,7 @@ public class SimpleGui extends JPanel implements ActionListener{
 
         int j = 0;
         int length = m_array.length;
+        
         for (int i = 0; i < length; i++) {
             int minIndex = i;
             for (j = i ; j < length; j++) {

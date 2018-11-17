@@ -28,18 +28,18 @@ public class SortDemo implements ActionListener{
         c.gridx = 0;
         c.gridy = 0;
         c.insets = new Insets(20, 5, 5, 5);
-        
+
         mainframe.add(arraySizeLbl, c);
-        
+
         /*error = new JLabel("", JLabel.LEFT);
         c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 2;
         c.gridy = 0;
         c.insets = new Insets(20, 5, 5, 500);
-        
+
         mainframe.add(error, c);*/
-        
+
         arraySizeTxtField = new JTextField(3);
         c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -48,7 +48,6 @@ public class SortDemo implements ActionListener{
         c.insets = new Insets(20, 5, 5, 500);
 
         mainframe.add(arraySizeTxtField, c);
-        
 
         sortAlgoTypeLbl = new JLabel("Type of Sort: ", JLabel.RIGHT);
         c.weightx = 0.5;
@@ -102,7 +101,7 @@ public class SortDemo implements ActionListener{
             }
             flag = false;
         } // end while
-        
+
         arraySizeLbl.setText("Size of the Array: ");
         sortButton.setText("Sorting...");        
         int choice = sortAlgoList.getSelectedIndex();
@@ -112,12 +111,16 @@ public class SortDemo implements ActionListener{
         switch (choice) {
 
             case 0:
-                algo = new BubbleSort();
-                break;
+            algo = new BubbleSort();
+            break;
             case 1:
-                algo = new SelectionSort();
-                break;
+            algo = new SelectionSort();
+            break;
         } // end switch
+        A.shuffle();
+        A.print();
+        algo.sort(A);
+        algo.printCounters(A);
 
         SimpleGui sorter = new SimpleGui(n);
         mainframe.setVisible(false);
