@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Color;
 import javax.swing.JComponent;
 import java.util.concurrent.TimeUnit;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 
 public class SortArray extends JComponent{
 
@@ -96,9 +94,6 @@ public class SortArray extends JComponent{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        Graphics2D g2 = (Graphics2D)g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        
         int len = this.length();
         int width = this.getWidth();
         int height = this.getHeight();
@@ -119,8 +114,8 @@ public class SortArray extends JComponent{
 
             j = (m_values[a]+1) * barHeight; //Scaling the array value to make the bars visible
             g.fillRect(k, w - j, barWidth, j);
-            g2.setColor(Color.white);
-            g2.drawString(Integer.toString(m_values[a]), barWidth/2 + k, w - j - 5);
+            g.setColor(Color.white);
+            g.drawString(Integer.toString(m_values[a]), barWidth/2 + k, w - j - 5);
             k += barWidth + 5;
 
         }
