@@ -7,13 +7,14 @@ import java.util.concurrent.TimeUnit;
 import java.lang.Math.*;
 
 public class Test {
-
+ 
     public static void main() {
         SortArray array = new SortArray(100);
         
         JFrame frame = new JFrame("test");
-        JScrollPane scrollPane = new JScrollPane();
+        JScrollPane scrollPane = new JScrollPane(array);
         scrollPane.setViewportView(array);
+        scrollPane.setSize(100,100);
         
         frame.setPreferredSize(new Dimension(array.length() * 2, 300));
         array.setPreferredSize(new Dimension(200, 200));
