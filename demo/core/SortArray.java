@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 import javax.swing.JComponent;
 import java.util.concurrent.TimeUnit;
+import java.awt.Dimension;
 
 public class SortArray extends JComponent{
 
@@ -14,10 +15,13 @@ public class SortArray extends JComponent{
     protected boolean m_state[];
     private int m_swapCount = 0;
     private int m_compareCount = 0;
+   
+    private int barWidth = 0;
+    private int barHeight = 0;
 
     // constructers
 
-    public SortArray (int size) {
+    public SortArray (int size, int width, int height) {
 
         if (size < 0) {
             throw new IllegalArgumentException();
@@ -30,6 +34,21 @@ public class SortArray extends JComponent{
             m_state[i] = false;
         }
 
+        
+        int len = this.length();
+       
+        System.out.println("H: " + height + " W: " + width);
+        barWidth = Math.max(width/len, 5);
+        barHeight = 10;
+        
+        System.out.println("BH: " + barHeight + " BW: " + barWidth);
+         
+        Dimension windowSize = new Dimension(
+                                        (barWidth + 5) * (size+1), //leave additional bar space to make the last bar label visible 
+                                        (barHeight * (size + 5)));
+        this.setPreferredSize(windowSize);
+        
+        
     }
 
     // methods
@@ -61,17 +80,18 @@ public class SortArray extends JComponent{
             throw new IndexOutOfBoundsException();
         }
 
+        m_state[j] = m_state[i] = true;
         int temp = m_values[i];
         m_values[i] = m_values[j];
         m_values[j] = temp;
         m_swapCount++;
-        
+
         try {
-                Thread.sleep(Math.max(10, 5000/length()));
-            }catch(InterruptedException ex){
-                Thread.currentThread().interrupt();
-            }
-            
+            Thread.sleep(Math.max(10, 5000/length()));
+        }catch(InterruptedException ex){
+            Thread.currentThread().interrupt();
+        }
+
         this.paintImmediately(0, 0, this.getWidth(), this.getHeight());
         m_state[j] = m_state[i] = false;
     }
@@ -93,18 +113,16 @@ public class SortArray extends JComponent{
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         int len = this.length();
         int width = this.getWidth();
         int height = this.getHeight();
-        
+
         g.fillRect(0, 0, width, height);
- 
+
         int j, k = 0;
         int w = height - 10;
-        int barWidth = Math.max((width/len), 5);
-        int barHeight = Math.min((height/len), 10);
-
+       
         for (int a = 0; a < len; a++) {
 
             if(m_state[a] == true)
@@ -119,9 +137,7 @@ public class SortArray extends JComponent{
             k += barWidth + 5;
 
         }
-        
-        
-    }    
 
+    }    
     public static final Random random = new Random();
 }
