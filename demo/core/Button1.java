@@ -2,9 +2,10 @@ package demo.core;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Button1 implements ActionListener {
+public class Button1 extends JPanel implements ActionListener {
     
     JButton button;
+    JFrame frame;
     
     public static void main() {
         Button1 gui = new Button1();
@@ -12,13 +13,13 @@ public class Button1 implements ActionListener {
     }
     
     public void go() {
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         button = new JButton("Open Calculator");
         
         button.addActionListener(this);
         
         frame.getContentPane().add(button);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 300);
         frame.setVisible(true);
     }
@@ -27,6 +28,8 @@ public class Button1 implements ActionListener {
       
         Calculator calculator = new Calculator();
         calculator.setVisible(true);
+        frame.setVisible(false);
+        
     
     }
 }

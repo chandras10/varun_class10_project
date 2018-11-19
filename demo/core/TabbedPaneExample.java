@@ -1,3 +1,5 @@
+package demo.core;
+
 import javax.swing.*; 
 import java.awt.event.*;
 import java.awt.Component;
@@ -9,6 +11,7 @@ import javax.swing.Popup;
 import javax.swing.PopupFactory;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.io.*;
 
 
 public class TabbedPaneExample {  
@@ -26,14 +29,15 @@ TabbedPaneExample(){
     l3 = new JLabel("third Label");
     l3.setBounds(50, 70, 100, 30);
 
+    
     JPanel p1=new JPanel();  
     //p1.add(ta);  
     JPanel p2=new JPanel();  
     JPanel p3=new JPanel(); 
-    JButton p4=new JButton("Hit me");
+    Button1 p4=new Button1();
 
     p1.add(l1); p2.add(l2); p3.add(l3); 
-    JTabbedPane tp=new JTabbedPane(JTabbedPane.TOP);  
+    JTabbedPane tp=new JTabbedPane(JTabbedPane.BOTTOM);  
     //tp.setBounds(50,50,200,200); 
     tp.setBounds(f.getLocation().x+2, f.getLocation().y+2, f.getWidth()-100, f.getHeight()-100);
     tp.add("Sorter",p1);  
@@ -41,7 +45,8 @@ TabbedPaneExample(){
     tp.add("Games",p3); 
     tp.add("PlaceHolder", p4);  
 
-
+    
+    
     tp.addChangeListener(new ChangeListener() {
 
         // This method is called whenever the selected tab changes
@@ -62,6 +67,8 @@ TabbedPaneExample(){
 
     });
 
+    p4.go();
+    
     f.add(tp);  
      
     f.setLayout(null);  

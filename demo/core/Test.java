@@ -1,51 +1,32 @@
 package demo.core;
-import java.util.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+import java.lang.Math.*;
 
 public class Test {
-    
+ 
     public static void main() {
         
-        Scanner sc = new Scanner(System.in);
-        SortArray A = new SortArray(10);
         
-        A.shuffle();
-        System.out.print("The original array is: ");
-        A.print();
+        JFrame frame = new JFrame("test");
+        frame.setSize(new Dimension(500, 500));
+
         
-        SortAlgorithm algo = null;
+        SortArray array = new SortArray(20,frame.getWidth(), frame.getHeight());
+        JScrollPane scrollPane = new JScrollPane(array);
+        scrollPane.setViewportView(array);
         
-        boolean flag = true;
+        frame.getContentPane().add(scrollPane);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        while (flag) {
-            
-            System.out.println("Enter the sorting technique: ");
-            System.out.print("1) Bubble Sort\n2)Selection Sort");
-            int choice = sc.nextInt();
-    
-            switch (choice) {
-                
-                case 1:
-                    algo = new BubbleSort();
-                    flag = false;
-                    break;
-                case 2:
-                    algo = new SelectionSort();
-                    flag = false;
-                    break;
-                default:
-                    System.out.println("Wrong choice");
-                    System.out.println();
-            } // end switch
-            
-        }// end while
+        frame.setVisible(true);
         
-        System.out.println("Algo used for sorting: " + algo.getName());
-        algo.sort(A);
-        System.out.println();
-        algo.printCounters();
-        System.out.print("The sorted array is: ");
-        A.print();
-        
+        SortAlgorithm algo = new SelectionSort();
+        array.shuffle();
+        algo.sort(array);
     }
-    
+
 }
