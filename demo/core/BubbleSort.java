@@ -1,5 +1,3 @@
-package demo.core;
-
 public class BubbleSort extends SortAlgorithm
 {
     public BubbleSort() {
@@ -7,12 +5,11 @@ public class BubbleSort extends SortAlgorithm
     }
     
     public void sort(SortArray array) {
-
-        for(int i = array.length() -1; i > 0; i--) {
+        for(int i = array.length(); i >= 1; i--) {
             
             for(int j = 0; j < i-1; j++) {
-                if (array.compare(i, j) < 0) {
-                    array.swap(i, j);
+                if (array.compare(j, j+1) > 0) {
+                    array.swap(j, j+1);
                 }
             }
         }
