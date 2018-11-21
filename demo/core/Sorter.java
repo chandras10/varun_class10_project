@@ -155,7 +155,6 @@ public class Sorter extends JPanel
 
     private boolean validateParms() {
 
-        System.out.println("Array Size: " + sortArraySizeField.getText());
         try {
             int n = Integer.parseInt(sortArraySizeField.getText());
             if ((n <= 0) || (n > 1000)) {
@@ -173,7 +172,7 @@ public class Sorter extends JPanel
 
 
     public void actionPerformed(ActionEvent e) {
-        System.out.println("I was called. ActionCmd: " + e.getActionCommand());
+        //System.out.println("I was called. ActionCmd: " + e.getActionCommand());
         
         if (!validateParms()) {
                 return;
@@ -204,7 +203,6 @@ public class Sorter extends JPanel
             }
 
             public void run() {
-                System.out.println("SortDemo called");
                 sortArray = new SortArray(n, o.sortArrayScrollPane.getWidth(), o.sortArrayScrollPane.getHeight());
                 sortArray.shuffle();
                 o.sortArrayScrollPane.setViewportView(sortArray);

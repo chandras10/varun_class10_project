@@ -33,15 +33,8 @@ public class SortArray extends JComponent{
             m_state[i] = false;
         }
 
-        
-        int len = this.length();
-       
-        System.out.println("H: " + height + " W: " + width);
-        barWidth = Math.max(width/len, 5);
+        barWidth = Math.max(width/this.length(), 5);
         barHeight = 10;
-        
-        System.out.println("BH: " + barHeight + " BW: " + barWidth);
-
          
         Dimension windowSize = new Dimension(
                                         (barWidth + 5) * (size+1), //leave additional bar space to make the last bar label visible 
