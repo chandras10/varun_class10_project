@@ -42,8 +42,7 @@ public class Sorter extends JPanel
 
         algorithmComboBox = new JComboBox(algorithmComboBoxModel);    
         algorithmComboBox.setSelectedIndex(0);
-        algorithmComboBox.setActionCommand(algorithmFieldString);
-        algorithmComboBox.addActionListener(this);
+
 
         //Sort Button
         JButton sortButton = new JButton(" Sort ");
@@ -52,7 +51,7 @@ public class Sorter extends JPanel
 
         //Shuffle Button
         JButton shuffleButton = new JButton(" Shuffle ");
-        shuffleButton.setActionCommand(sortButtonString);
+        shuffleButton.setActionCommand(shuffleButtonString);
         shuffleButton.addActionListener(this);
 
         //Create some labels for the fields.
@@ -154,56 +153,62 @@ public class Sorter extends JPanel
         }
     }
 
-    public void actionPerformed(ActionEvent e) {
-        String prefix = "You typed \"";
+    private boolean validateParms() {
 
-        
-        if (arraySizeFieldString.equals(e.getActionCommand())) {
-            //Ensure the Array size is a positive number within the allowed range...
-
-            JTextField size = (JTextField)e.getSource();
-            try {
-                int n = Integer.parseInt(size.getText());
-                if ((n < 0) || (n > 1000)) {
-                    JOptionPane.showMessageDialog(null, "Please enter a value between 0-1000.");
-                }
-            } catch(NumberFormatException exception) {
-                JOptionPane.showMessageDialog(null, "Please enter a number");
+        System.out.println("Array Size: " + sortArraySizeField.getText());
+        try {
+            int n = Integer.parseInt(sortArraySizeField.getText());
+            if ((n <= 0) || (n > 1000)) {
+                JOptionPane.showMessageDialog(null, "Please enter a value between 1-1000.");
+                return false;
             }
 
-        } else if (algorithmFieldString.equals(e.getActionCommand())) {
-            //Sorting Algorithm selected
-            JComboBox algo = (JComboBox)e.getSource();
-            
-        } else if (sortButtonString.equals(e.getActionCommand())) {
+        } catch(NumberFormatException exception) {
+            JOptionPane.showMessageDialog(null, "Please enter a number");
+            return false;
+        }
+
+        return true;
+    }
+
+
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("I was called. ActionCmd: " + e.getActionCommand());
+        
+        if (!validateParms()) {
+                return;
+        }
+        
+        if (sortButtonString.equals(e.getActionCommand())) {
               try {
+
                 int n = Integer.parseInt(sortArraySizeField.getText());
-                sortDemo(this, sortArrayScrollPane, n);
+                sortDemo(n);
               } catch (NumberFormatException exception) {
                 JOptionPane.showMessageDialog(null, "Please enter a number");
               }
         } else if (shuffleButtonString.equals(e.getActionCommand())) {
-            sortArray.shuffle();
+            sortArray.shuffleWithAnimation();
             sortArray.print();
         }
     }
 
-    private void sortDemo(Sorter obj, JScrollPane scrollPane, int n) {
-        class OneShotTask implements Runnable {
+    private void sortDemo(int n) {
+        class SortTask implements Runnable {
             Sorter o;
-            JScrollPane p;
             int n;
-            OneShotTask(Sorter obj, JScrollPane scrollPane, int size) { 
+
+            SortTask(Sorter obj, int size) { 
                 o = obj; 
-                p = scrollPane;
                 n = size;
             }
+
             public void run() {
                 System.out.println("SortDemo called");
-                sortArray = new SortArray(n, obj.getWidth(), obj.getHeight());
-                p.setViewportView(sortArray);
+                sortArray = new SortArray(n, o.sortArrayScrollPane.getWidth(), o.sortArrayScrollPane.getHeight());
                 sortArray.shuffle();
-                sortArray.print();
+                o.sortArrayScrollPane.setViewportView(sortArray);
+                
 
                 int choice = o.algorithmComboBox.getSelectedIndex();
                 SortAlgorithm algo = null;
@@ -216,11 +221,12 @@ public class Sorter extends JPanel
                         break;
                 } // end switch
                 algo.sort(sortArray);
-                o.compareCount.setText(sortArray.getCompareCount().toString());
-                o.swapCount.setText(sortArray.getSwapCount().toString());
+
+                o.compareCount.setText(new Integer(sortArray.getCompareCount()).toString());
+                o.swapCount.setText(new Integer(sortArray.getSwapCount()).toString());
             }
         }
-        Thread t = new Thread(new OneShotTask(this, scrollPane, n));
+        Thread t = new Thread(new SortTask(this, n));
         t.start();
     }
  

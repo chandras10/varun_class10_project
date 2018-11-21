@@ -1,4 +1,3 @@
-package demo.core;
 import java.util.Random;
 import javax.swing.JPanel;
 import java.awt.Graphics;
@@ -42,6 +41,7 @@ public class SortArray extends JComponent{
         barHeight = 10;
         
         System.out.println("BH: " + barHeight + " BW: " + barWidth);
+
          
         Dimension windowSize = new Dimension(
                                         (barWidth + 5) * (size+1), //leave additional bar space to make the last bar label visible 
@@ -75,19 +75,28 @@ public class SortArray extends JComponent{
     }
 
     public void swap(int i, int j) {
+        internalSwap(i, j, true);
+    }
+
+
+    public void internalSwap(int i, int j, boolean showAnimation) {
 
         if (i < 0 || j < 0 || i >= m_values.length || j >= m_values.length) {
             throw new IndexOutOfBoundsException();
         }
 
-        m_state[j] = m_state[i] = true;
         int temp = m_values[i];
         m_values[i] = m_values[j];
         m_values[j] = temp;
         m_swapCount++;
 
+        if (!showAnimation) {
+            return;  //No need to visually show the swapping if not needed, for example when called from shuffle()
+        }
+
+        m_state[j] = m_state[i] = true;
         try {
-            Thread.sleep(Math.max(10, 5000/length()));
+            Thread.sleep(Math.max(10, 500/length()));
         }catch(InterruptedException ex){
             Thread.currentThread().interrupt();
         }
@@ -97,9 +106,14 @@ public class SortArray extends JComponent{
     }
 
     public void shuffle() {
-
         for (int i = m_values.length - 1; i > 0; i--) {
-            swap(i, random.nextInt(i+1));
+            internalSwap(i, random.nextInt(i+1), false);
+        }
+    }
+
+    public void shuffleWithAnimation() {
+        for (int i = m_values.length - 1; i > 0; i--) {
+            internalSwap(i, random.nextInt(i+1), true);
         }
     }
 
@@ -139,5 +153,10 @@ public class SortArray extends JComponent{
         }
 
     }    
+
+    public void printCounters(SortArray array) {
+        System.out.println("Compare#: " + this.getCompareCount() + "\t Swap#: " + this.getSwapCount());
+    }
+
     public static final Random random = new Random();
 }
