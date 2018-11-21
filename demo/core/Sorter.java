@@ -1,5 +1,3 @@
-package demo.core;
-
 import javax.swing.*;
 import javax.swing.text.*;
 
@@ -9,8 +7,8 @@ import java.awt.event.*;        //for action events
 import java.net.URL;
 import java.io.IOException;
 
-public class Sorter extends JPanel implements ActionListener {
-    
+public class Sorter extends JPanel
+                             implements ActionListener {
     private String newline = "\n";
     protected static final String arraySizeFieldString = "Array Size";
     protected static final String algorithmFieldString = "Algorithm";
@@ -44,8 +42,7 @@ public class Sorter extends JPanel implements ActionListener {
 
         algorithmComboBox = new JComboBox(algorithmComboBoxModel);    
         algorithmComboBox.setSelectedIndex(0);
-        algorithmComboBox.setActionCommand(algorithmFieldString);
-        algorithmComboBox.addActionListener(this);
+
 
         //Sort Button
         JButton sortButton = new JButton(" Sort ");
@@ -54,7 +51,7 @@ public class Sorter extends JPanel implements ActionListener {
 
         //Shuffle Button
         JButton shuffleButton = new JButton(" Shuffle ");
-        shuffleButton.setActionCommand(sortButtonString);
+        shuffleButton.setActionCommand(shuffleButtonString);
         shuffleButton.addActionListener(this);
 
         //Create some labels for the fields.
@@ -62,8 +59,8 @@ public class Sorter extends JPanel implements ActionListener {
         sortArraySizeFieldLabel.setLabelFor(sortArraySizeField);
         JLabel algorithmFieldLabel = new JLabel(algorithmFieldString + ": ");
         algorithmFieldLabel.setLabelFor(algorithmComboBox);
-        JLabel sortLabel = new JLabel(sortButtonString);
-        sortLabel.setLabelFor(sortButton);
+        JLabel ftfLabel = new JLabel(sortButtonString);
+        ftfLabel.setLabelFor(sortButton);
 
         //Lay out the text controls and the labels.
         JPanel sortParametersPane = new JPanel();
@@ -71,15 +68,15 @@ public class Sorter extends JPanel implements ActionListener {
         GridBagConstraints c = new GridBagConstraints();
 
         sortParametersPane.setLayout(gridbag);
-   
+
         JLabel[] labels = {sortArraySizeFieldLabel, algorithmFieldLabel};
         JComponent[] fields = {sortArraySizeField, algorithmComboBox};
         addSortParameterRows(labels, fields, gridbag, sortParametersPane);
 
         c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.0;
-        sortParametersPane.add(shuffleButton, c);                           
+        c.fill = GridBagConstraints.HORIZONTAL;     
+        c.weightx = 0.0; 
+        sortParametersPane.add(shuffleButton, c);
 
         c.gridwidth = GridBagConstraints.REMAINDER;     //end row
         c.weightx = 1.0;
@@ -91,7 +88,7 @@ public class Sorter extends JPanel implements ActionListener {
         sortParametersPane.add(new JLabel("Compares: "), c);
 
         c.gridwidth = GridBagConstraints.REMAINDER; //next-to-last
-        c.fill = GridBagConstraints. HORIZONTAL;     
+        c.fill = GridBagConstraints.HORIZONTAL;     
         c.weightx = 1.0;
         compareCount = new JLabel("");
         sortParametersPane.add(compareCount, c);
@@ -150,61 +147,66 @@ public class Sorter extends JPanel implements ActionListener {
             
             c.fill = GridBagConstraints.HORIZONTAL;
             container.add(labels[i], c);
-            c.gridwidth = GridBagConstraints.REMAINDER;     //end row  
+            c.gridwidth = GridBagConstraints.REMAINDER;     //end row
             c.weightx = 1.0;
             container.add(sortArraySizeFields[i], c);
         }
     }
 
-    public void actionPerformed(ActionEvent e) {
-        String prefix = "You typed \"";
+    private boolean validateParms() {
 
-        if (e.getActionCommand().equals(arraySizeFieldString)) {
-            //Ensure the Array size is a positive number within the allowed range...
-
-            JTextField size = (JTextField)e.getSource();
-            try {
-                int n = Integer.parseInt(size.getText());
-                if ((n < 0) || (n > 1000)) {
-                    JOptionPane.showMessageDialog(null, "Please enter a value between 0-1000.");
-                }
-            } catch(NumberFormatException exception) {
-                JOptionPane.showMessageDialog(null, "Please enter a number between 0-1000.");
+        try {
+            int n = Integer.parseInt(sortArraySizeField.getText());
+            if ((n <= 0) || (n > 1000)) {
+                JOptionPane.showMessageDialog(null, "Please enter a value between 1-1000.");
+                return false;
             }
 
-        } else if (algorithmFieldString.equals(e.getActionCommand())) {
-            //Sorting Algorithm selected
-            JComboBox algo = (JComboBox)e.getSource();
-            
-        } else if (sortButtonString.equals(e.getActionCommand())) {
+        } catch(NumberFormatException exception) {
+            JOptionPane.showMessageDialog(null, "Please enter a number");
+            return false;
+        }
+
+        return true;
+    }
+
+
+    public void actionPerformed(ActionEvent e) {
+        //System.out.println("I was called. ActionCmd: " + e.getActionCommand());
+        
+        if (!validateParms()) {
+                return;
+        }
+        
+        if (sortButtonString.equals(e.getActionCommand())) {
               try {
+
                 int n = Integer.parseInt(sortArraySizeField.getText());
-                sortDemo(this, sortArrayScrollPane, n);
+                sortDemo(n);
               } catch (NumberFormatException exception) {
                 JOptionPane.showMessageDialog(null, "Please enter a number");
               }
         } else if (shuffleButtonString.equals(e.getActionCommand())) {
-            sortArray.shuffle();
+            sortArray.shuffleWithAnimation();
             sortArray.print();
         }
     }
 
-    private void sortDemo(Sorter obj, JScrollPane scrollPane, int n) {
-        class OneShotTask implements Runnable {
+    private void sortDemo(int n) {
+        class SortTask implements Runnable {
             Sorter o;
-            JScrollPane p;
             int n;
-            OneShotTask(Sorter obj, JScrollPane scrollPane, int size) { 
+
+            SortTask(Sorter obj, int size) { 
                 o = obj; 
-                p = scrollPane;
                 n = size;
             }
+
             public void run() {
-                System.out.println("SortDemo called");
-                sortArray = new SortArray(n, obj.getWidth(), obj.getHeight());
-                p.setViewportView(sortArray);
+                sortArray = new SortArray(n, o.sortArrayScrollPane.getWidth(), o.sortArrayScrollPane.getHeight());
                 sortArray.shuffle();
-                sortArray.print();
+                o.sortArrayScrollPane.setViewportView(sortArray);
+                
 
                 int choice = o.algorithmComboBox.getSelectedIndex();
                 SortAlgorithm algo = null;
@@ -217,11 +219,12 @@ public class Sorter extends JPanel implements ActionListener {
                         break;
                 } // end switch
                 algo.sort(sortArray);
-                o.compareCount.setText(sortArray.getCompareCount().toString());
-                o.swapCount.setText(sortArray.getSwapCount().toString());
+
+                o.compareCount.setText(new Integer(sortArray.getCompareCount()).toString());
+                o.swapCount.setText(new Integer(sortArray.getSwapCount()).toString());
             }
         }
-        Thread t = new Thread(new OneShotTask(this, scrollPane, n));
+        Thread t = new Thread(new SortTask(this, n));
         t.start();
     }
  
@@ -251,8 +254,8 @@ public class Sorter extends JPanel implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 //Turn off metal's use of bold fonts
-                UIManager.put("swing.boldMetal", Boolean.FALSE);
-                createAndShowGUI();
+		        UIManager.put("swing.boldMetal", Boolean.FALSE);
+		        createAndShowGUI();
             }
         });
     }

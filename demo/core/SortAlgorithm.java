@@ -1,4 +1,3 @@
-package demo.core;
 import java.util.Objects;
 
 public class SortAlgorithm
@@ -20,7 +19,4 @@ public class SortAlgorithm
         System.out.println("Don't know how to sort");
     }
 
-    public void printCounters(SortArray array) {
-        System.out.println("Compare#: " + array.getCompareCount() + "\t Swap#: " + array.getSwapCount());
-    }
 }
