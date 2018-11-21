@@ -1,3 +1,5 @@
+package demo.core;
+
 public class SelectionSort extends SortAlgorithm
 {
     public SelectionSort() {

@@ -1,3 +1,5 @@
+package demo.core;
+
 import javax.swing.*;
 import javax.swing.text.*;
 
@@ -7,8 +9,8 @@ import java.awt.event.*;        //for action events
 import java.net.URL;
 import java.io.IOException;
 
-public class Sorter extends JPanel
-                             implements ActionListener {
+public class Sorter extends JPanel implements ActionListener {
+    
     private String newline = "\n";
     protected static final String arraySizeFieldString = "Array Size";
     protected static final String algorithmFieldString = "Algorithm";
@@ -60,8 +62,8 @@ public class Sorter extends JPanel
         sortArraySizeFieldLabel.setLabelFor(sortArraySizeField);
         JLabel algorithmFieldLabel = new JLabel(algorithmFieldString + ": ");
         algorithmFieldLabel.setLabelFor(algorithmComboBox);
-        JLabel ftfLabel = new JLabel(sortButtonString);
-        ftfLabel.setLabelFor(sortButton);
+        JLabel sortLabel = new JLabel(sortButtonString);
+        sortLabel.setLabelFor(sortButton);
 
         //Lay out the text controls and the labels.
         JPanel sortParametersPane = new JPanel();
@@ -69,15 +71,15 @@ public class Sorter extends JPanel
         GridBagConstraints c = new GridBagConstraints();
 
         sortParametersPane.setLayout(gridbag);
-
+   
         JLabel[] labels = {sortArraySizeFieldLabel, algorithmFieldLabel};
         JComponent[] fields = {sortArraySizeField, algorithmComboBox};
         addSortParameterRows(labels, fields, gridbag, sortParametersPane);
 
         c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last
-        c.fill = GridBagConstraints.HORIZONTAL;     
-        c.weightx = 0.0; 
-        sortParametersPane.add(shuffleButton, c);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.0;
+        sortParametersPane.add(shuffleButton, c);                           
 
         c.gridwidth = GridBagConstraints.REMAINDER;     //end row
         c.weightx = 1.0;
@@ -89,7 +91,7 @@ public class Sorter extends JPanel
         sortParametersPane.add(new JLabel("Compares: "), c);
 
         c.gridwidth = GridBagConstraints.REMAINDER; //next-to-last
-        c.fill = GridBagConstraints.HORIZONTAL;     
+        c.fill = GridBagConstraints. HORIZONTAL;     
         c.weightx = 1.0;
         compareCount = new JLabel("");
         sortParametersPane.add(compareCount, c);
@@ -148,7 +150,7 @@ public class Sorter extends JPanel
             
             c.fill = GridBagConstraints.HORIZONTAL;
             container.add(labels[i], c);
-            c.gridwidth = GridBagConstraints.REMAINDER;     //end row
+            c.gridwidth = GridBagConstraints.REMAINDER;     //end row  
             c.weightx = 1.0;
             container.add(sortArraySizeFields[i], c);
         }
@@ -157,8 +159,7 @@ public class Sorter extends JPanel
     public void actionPerformed(ActionEvent e) {
         String prefix = "You typed \"";
 
-        
-        if (arraySizeFieldString.equals(e.getActionCommand())) {
+        if (e.getActionCommand().equals(arraySizeFieldString)) {
             //Ensure the Array size is a positive number within the allowed range...
 
             JTextField size = (JTextField)e.getSource();
@@ -168,7 +169,7 @@ public class Sorter extends JPanel
                     JOptionPane.showMessageDialog(null, "Please enter a value between 0-1000.");
                 }
             } catch(NumberFormatException exception) {
-                JOptionPane.showMessageDialog(null, "Please enter a number");
+                JOptionPane.showMessageDialog(null, "Please enter a number between 0-1000.");
             }
 
         } else if (algorithmFieldString.equals(e.getActionCommand())) {
@@ -250,8 +251,8 @@ public class Sorter extends JPanel
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 //Turn off metal's use of bold fonts
-		        UIManager.put("swing.boldMetal", Boolean.FALSE);
-		        createAndShowGUI();
+                UIManager.put("swing.boldMetal", Boolean.FALSE);
+                createAndShowGUI();
             }
         });
     }

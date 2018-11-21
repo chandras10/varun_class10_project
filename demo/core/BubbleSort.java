@@ -1,3 +1,5 @@
+package demo.core;
+
 public class BubbleSort extends SortAlgorithm
 {
     public BubbleSort() {

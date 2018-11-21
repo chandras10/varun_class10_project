@@ -57,11 +57,11 @@ public class SortArray extends JComponent{
         return m_values.length;
     }
 
-    public int getSwapCount() {
+    public Integer getSwapCount() {
         return(m_swapCount);
     }
 
-    public int getCompareCount() {
+    public Integer getCompareCount() {
         return(m_compareCount);
     }
 
