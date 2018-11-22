@@ -1,3 +1,5 @@
+package demo.core;
+
 import javax.swing.*;
 import javax.swing.text.*;
 
@@ -7,9 +9,7 @@ import java.awt.event.*;        //for action events
 import java.net.URL;
 import java.io.IOException;
 
-public class Sorter extends JPanel
-                             implements ActionListener {
-    private String newline = "\n";
+public class Sorter extends JPanel implements ActionListener {
     protected static final String arraySizeFieldString = "Array Size";
     protected static final String algorithmFieldString = "Algorithm";
     protected static final String sortButtonString = "Sort";
@@ -109,7 +109,7 @@ public class Sorter extends JPanel
                                 BorderFactory.createTitledBorder("Parameters"),
                                 BorderFactory.createEmptyBorder(5,5,5,5)));
 
-        //Create Sort Array visualization pane
+        // Create Sort Array visualization pane
         SortArray s = new SortArray(1,1,1);
         s.setPreferredSize(new Dimension(500, 500));
         sortArrayScrollPane = new JScrollPane(s);
@@ -188,7 +188,6 @@ public class Sorter extends JPanel
               }
         } else if (shuffleButtonString.equals(e.getActionCommand())) {
             sortArray.shuffleWithAnimation();
-            sortArray.print();
         }
     }
 
@@ -248,7 +247,7 @@ public class Sorter extends JPanel
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public static void main() {
         //Schedule a job for the event dispatching thread:
         //creating and showing this application's GUI.
         SwingUtilities.invokeLater(new Runnable() {

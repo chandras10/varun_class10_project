@@ -1,3 +1,5 @@
+package demo.core;
+
 import java.util.Random;
 import javax.swing.JPanel;
 import java.awt.Graphics;
@@ -108,14 +110,6 @@ public class SortArray extends JComponent{
         for (int i = m_values.length - 1; i > 0; i--) {
             internalSwap(i, random.nextInt(i+1), true);
         }
-    }
-
-    public void print() {
-        for (int i = 0; i < m_values.length; i++) {
-            System.out.print(m_values[i] + " ");
-        }
-
-        System.out.println();
     }
 
     public void paintComponent(Graphics g) {

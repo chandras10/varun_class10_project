@@ -1,3 +1,5 @@
+package demo.core;
+
 import java.util.Objects;
 
 public class SortAlgorithm
