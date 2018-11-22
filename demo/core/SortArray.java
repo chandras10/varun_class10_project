@@ -24,10 +24,6 @@ public class SortArray extends JComponent{
 
     public SortArray (int size, int width, int height) {
 
-        if (size < 0) {
-            throw new IllegalArgumentException();
-        }
-
         m_values = new int[size];
         m_state = new boolean[size];
         for (int i = 0; i < m_values.length; i++) {
