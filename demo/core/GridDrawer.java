@@ -25,8 +25,9 @@ public class GridDrawer extends JFrame{
             int circleY = 10;
             int circleX = 20;
 
-            int numbers[] = {0, 1, 2, 3, 4, 5, 6};
+            int numbersX[] = {0, 1, 2, 3, 4, 5, 6};
             String alphabets[] = {"a", "b", "c", "d", "e", "f", "h"};
+            int numbersY[] = numbersX;
 
             g.fillRect(0, 0, width, height);
             g.setColor(Color.white);
@@ -42,9 +43,9 @@ public class GridDrawer extends JFrame{
                 gap = 0;
             }
 
-            for (int k = 0; k < numbers.length; k ++) {
+            for (int k = 0; k < numbersX.length; k ++) {
                 gap += 50;
-                g.drawString(Integer.toString(numbers[k]), circleX + gap - 40, circleY);
+                g.drawString(Integer.toString(numbersX[k]), circleX + gap - 40, circleY);
             }
         }
 

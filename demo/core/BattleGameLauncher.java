@@ -84,7 +84,7 @@ public class BattleGameLauncher {
         if (numOfGuesses <= 18)
             System.out.println("Time to play another game. Try your GF's fucking feelings this time.");
         else 
-            System.out.println("Nice...");
+            System.out.println("You lost");
             
     }// end finish game method
     
