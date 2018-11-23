@@ -54,7 +54,7 @@ public class Sorter extends JPanel implements ActionListener {
         shuffleButton.setActionCommand(shuffleButtonString);
         shuffleButton.addActionListener(this);
 
-        //Create some labels for the fields.9i
+        //Create some labels for the fields.
         JLabel sortArraySizeFieldLabel = new JLabel(arraySizeFieldString + ": ");
         sortArraySizeFieldLabel.setLabelFor(sortArraySizeField);
         JLabel algorithmFieldLabel = new JLabel(algorithmFieldString + ": ");
