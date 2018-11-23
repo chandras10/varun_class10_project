@@ -2,14 +2,13 @@ package demo.core;
 
 import java.util.Objects;
 
-public class SortAlgorithm
-{
+public class SortAlgorithm {
 
     private final String name;
 
-    protected SortAlgorithm(String name) {
-        Objects.requireNonNull(name);
-        this.name = name;
+    protected SortAlgorithm(String nameOfSort) {
+        Objects.requireNonNull(nameOfSort);
+        this.name = nameOfSort;
 
     }
 

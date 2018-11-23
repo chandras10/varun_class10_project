@@ -54,13 +54,13 @@ public class Sorter extends JPanel implements ActionListener {
         shuffleButton.setActionCommand(shuffleButtonString);
         shuffleButton.addActionListener(this);
 
-        //Create some labels for the fields.
+        //Create some labels for the fields.9i
         JLabel sortArraySizeFieldLabel = new JLabel(arraySizeFieldString + ": ");
         sortArraySizeFieldLabel.setLabelFor(sortArraySizeField);
         JLabel algorithmFieldLabel = new JLabel(algorithmFieldString + ": ");
         algorithmFieldLabel.setLabelFor(algorithmComboBox);
-        JLabel ftfLabel = new JLabel(sortButtonString);
-        ftfLabel.setLabelFor(sortButton);
+        JLabel sortButtonLabel = new JLabel(sortButtonString);
+        sortButtonLabel.setLabelFor(sortButton);
 
         //Lay out the text controls and the labels.
         JPanel sortParametersPane = new JPanel();
@@ -139,7 +139,7 @@ public class Sorter extends JPanel implements ActionListener {
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.EAST;
         int numLabels = labels.length;
-
+        
         for (int i = 0; i < numLabels; i++) {
             c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last
             c.fill = GridBagConstraints.NONE;      //reset to default
@@ -172,7 +172,7 @@ public class Sorter extends JPanel implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
-        //System.out.println("I was called. ActionCmd: " + e.getActionCommand());
+
         
         if (!validateParms()) {
                 return;
@@ -253,8 +253,8 @@ public class Sorter extends JPanel implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 //Turn off metal's use of bold fonts
-		        UIManager.put("swing.boldMetal", Boolean.FALSE);
-		        createAndShowGUI();
+                UIManager.put("swing.boldMetal", Boolean.FALSE);
+                createAndShowGUI();
             }
         });
     }

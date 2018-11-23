@@ -36,7 +36,7 @@ public class SortArray extends JComponent{
          
         Dimension windowSize = new Dimension(
                                         (barWidth + 5) * (size+1), //leave additional bar space to make the last bar label visible 
-                                        (barHeight * (size + 5)));
+                                        (barHeight * (size + 20)));
         this.setPreferredSize(windowSize);
         
         
@@ -135,7 +135,7 @@ public class SortArray extends JComponent{
 
         }
 
-    }    
+    }
 
     public void printCounters(SortArray array) {
         System.out.println("Compare#: " + this.getCompareCount() + "\t Swap#: " + this.getSwapCount());
