@@ -13,7 +13,18 @@ public class GridDrawer extends JFrame{
     boolean TheCoordsState[][] = new boolean[columns][rows];
 
     public GridDrawer() {
+        //TheCoordsState[2][2] = true;
+        
+        setState();
+        
+        frame = new JFrame();  
+        frame.setSize(400, 400);
+        frame.setVisible(true);
+        grid theGrid = new grid();
+        frame.add(theGrid);
+    }
 
+    public void setState() {
         int j = 0;
 
         for (int i = 0; i < 7; i++) {
@@ -29,16 +40,8 @@ public class GridDrawer extends JFrame{
             }
 
         }
-
-        //TheCoordsState[2][2] = true;
-        
-        frame = new JFrame();  
-        frame.setSize(400, 400);
-        frame.setVisible(true);
-        grid theGrid = new grid();
-        frame.add(theGrid);
     }
-
+    
     public class grid extends JPanel {
         public void paintComponent (Graphics g) {
             g.setColor(Color.black);

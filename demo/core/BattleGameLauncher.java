@@ -11,6 +11,8 @@ public class BattleGameLauncher {
     private ArrayList<BattleGame> enemyList = new ArrayList<BattleGame>();
     private int numOfGuesses = 0;
     
+    GridDrawer theGrid;
+    
     public void setUpGame() {
         
         BattleGame enemy1 = new BattleGame();
@@ -25,7 +27,7 @@ public class BattleGameLauncher {
         enemyList.add(enemy2);    //add the "enemies" to the enemyList ArrayList
         enemyList.add(enemy3);
         
-        GridDrawer theGrid = new GridDrawer(); // draw the grid
+        theGrid = new GridDrawer(); // draw the grid
         
         //  Some instruction to the player...
         
@@ -63,6 +65,17 @@ public class BattleGameLauncher {
             result = enemyToSet.checkYourself(userGuess);
             
             if(result.equals("hit")) {
+                char YC = userGuess.charAt(0);
+                char XC = userGuess.charAt(1);
+                
+                int XCoord = (int)(XC) - 48;
+                int YCoord = (int)(YC) - 97;
+                
+                System.out.println("The x = " + XCoord + "\nThe y = " + YCoord);
+                
+                theGrid.TheCoordsState[YCoord][XCoord] = true;
+                theGrid.repaint();
+                
                 break;
             }else if(result.equals("sunk")){
                 enemyList.remove(enemyToSet);
