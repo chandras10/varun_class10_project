@@ -7,9 +7,31 @@ import java.util.*;
 public class GridDrawer extends JFrame{
 
     JFrame frame;
-    JComponent theCoords[] = new JComponent[7];
-    
-    public void go() {
+
+    int columns = 7;
+    int rows = 7;
+    String TheCoords[][] = new String[columns][rows];
+
+    public GridDrawer() {
+
+        int j = 0;
+        
+        for (int i = 0; i < 7; i++) {
+   
+            j = 0;
+            TheCoords[i][j] = Integer.toString(i).concat(Integer.toString(j));
+            for (j = 0; j < 7;j++) {
+                int k = j + 97;
+                char ch = (char)k;
+                String ch2 = Character.toString(ch);
+                System.out.println(ch2);
+                TheCoords[i][j] = Integer.toString(i).concat(ch2);
+            }
+
+        }
+        
+        System.out.println("TheCoords of a2 is : " + TheCoords[1][0]);
+        
         frame = new JFrame();  
         frame.setSize(400, 400);
         frame.setVisible(true);
@@ -32,7 +54,7 @@ public class GridDrawer extends JFrame{
 
             g.fillRect(0, 0, width, height);
             g.setColor(Color.white);
-            
+
             for (int j = 0; j < numbersX.length; j++) {
                 for (int i = 0; i < numbersX.length; i++) {
                     g.fillOval((numbersX[i] + 1 * 10) + gap, (((numbersX[j] + 1) * 10)) + YGap, circleWidth, 30);
@@ -43,7 +65,7 @@ public class GridDrawer extends JFrame{
                 YGap += 40;
                 gap = 0;
             }
-            
+
             for (int k = 0; k < numbersX.length; k ++) {
                 gap += 50;
                 g.drawString(Integer.toString(numbersX[k]),(numbersX[k] + 1 * 10) + gap - 40, YGap + 80);

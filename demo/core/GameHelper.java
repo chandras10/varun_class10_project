@@ -41,7 +41,7 @@ public class GameHelper {
         while( !success & attempts++ < 200) {
             
             location = (int)(Math.random() * gridSize);
-            //System.out.print(" try " + location);
+            System.out.print(" try " + location);
             int x = 0;
             success = true;
             
@@ -68,7 +68,7 @@ public class GameHelper {
         int x = 0;
         int row = 0;
         int column = 0;
-        //System.out.println(" \n");
+        System.out.println(" \n");
         while (x < enemySize) {
             
             grid[coords[x]] = 1;
@@ -78,10 +78,10 @@ public class GameHelper {
             
             alphaCells.add(temp.concat(Integer.toString(row)));
             x++;
-            //System.out.print("   coord "+x+" = " + alphaCells.get(x-1));
+            System.out.print("   coord "+x+" = " + alphaCells.get(x-1));
         } // end while
         
-        //System.out.println( "\n");
+        System.out.println( "\n");
         
         return (alphaCells);
     } // end constructor

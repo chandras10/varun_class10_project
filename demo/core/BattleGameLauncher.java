@@ -26,7 +26,6 @@ public class BattleGameLauncher {
         enemyList.add(enemy3);
         
         GridDrawer theGrid = new GridDrawer(); // draw the grid
-        theGrid.go();
         
         //  Some instruction to the player...
         
