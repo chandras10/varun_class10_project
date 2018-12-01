@@ -10,27 +10,27 @@ public class GridDrawer extends JFrame{
 
     int columns = 7;
     int rows = 7;
-    String TheCoords[][] = new String[columns][rows];
+    boolean TheCoordsState[][] = new boolean[columns][rows];
 
     public GridDrawer() {
 
         int j = 0;
-        
+
         for (int i = 0; i < 7; i++) {
-   
+
             j = 0;
-            TheCoords[i][j] = Integer.toString(i).concat(Integer.toString(j));
+            //int k = i + 97;
+            //char ch = (char)k;
+            //String ch2 = Character.toString(ch);
+
+            TheCoordsState[i][j] = false; //ch2.concat(Integer.toString(j));
             for (j = 0; j < 7;j++) {
-                int k = j + 97;
-                char ch = (char)k;
-                String ch2 = Character.toString(ch);
-                System.out.println(ch2);
-                TheCoords[i][j] = Integer.toString(i).concat(ch2);
+                TheCoordsState[i][j] = false; //ch2.concat(Integer.toString(j));
             }
 
         }
-        
-        System.out.println("TheCoords of a2 is : " + TheCoords[1][0]);
+
+        //TheCoordsState[2][2] = true;
         
         frame = new JFrame();  
         frame.setSize(400, 400);
@@ -56,7 +56,15 @@ public class GridDrawer extends JFrame{
             g.setColor(Color.white);
 
             for (int j = 0; j < numbersX.length; j++) {
+
                 for (int i = 0; i < numbersX.length; i++) {
+
+                    if (TheCoordsState[j][i] == false) {
+                        g.setColor(Color.white);
+                    } else if (TheCoordsState[j][i] == true) {
+                        g.setColor(Color.orange);
+                    }
+
                     g.fillOval((numbersX[i] + 1 * 10) + gap, (((numbersX[j] + 1) * 10)) + YGap, circleWidth, 30);
                     gap += 50;
                 }
