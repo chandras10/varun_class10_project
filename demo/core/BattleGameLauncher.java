@@ -7,7 +7,7 @@ public class BattleGameLauncher {
     
     // instance variables
     
-    private GameHelper helper = new GameHelper();
+    GameHelper helper = new GameHelper();
     private ArrayList<BattleGame> enemyList = new ArrayList<BattleGame>();
     private int numOfGuesses = 0;
     
@@ -28,6 +28,8 @@ public class BattleGameLauncher {
         enemyList.add(enemy3);
         
         theGrid = new GridDrawer(); // draw the grid
+        theGrid.setUpGrid();
+        //theGrid.TheCoordsState[1][1] = true;
         
         //  Some instruction to the player...
         
@@ -46,7 +48,7 @@ public class BattleGameLauncher {
         
         while(!enemyList.isEmpty()) {
             
-            String userGuess = helper.getUserInput("Enter a guess: ");
+            String userGuess = helper.getUserInput();
             checkUserGuess(userGuess);
             
         }//end while
@@ -65,20 +67,10 @@ public class BattleGameLauncher {
             result = enemyToSet.checkYourself(userGuess);
             
             if(result.equals("hit")) {
-                char YC = userGuess.charAt(0);
-                char XC = userGuess.charAt(1);
-                
-                int XCoord = (int)(XC) - 48;
-                int YCoord = (int)(YC) - 97;
-                
-                System.out.println("The x = " + XCoord + "\nThe y = " + YCoord);
-                
-                theGrid.TheCoordsState[YCoord][XCoord] = true;
-                theGrid.repaint();
-                
                 break;
             }else if(result.equals("sunk")){
                 enemyList.remove(enemyToSet);
+                theGrid.drawNewGrid(true);
                 System.out.println("You sunk: "+ enemyToSet.getName());
                 break;
             }

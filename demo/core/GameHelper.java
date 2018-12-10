@@ -8,11 +8,10 @@ public class GameHelper {
     private int gridSize = 49;
     private int [] grid = new int[gridSize];
     private int enemyCount = 0;
-    GridDrawer gridDrawing = new GridDrawer();
-    public String getUserInput(String prompt) {
+    public String getUserInput() {
         
         String inputLine = "";
-        System.out.print(prompt + " ");
+        System.out.print("Enter a guess: ");
         Scanner sc = new Scanner(System.in);                        
         inputLine = sc.next();
         if (inputLine.length() == 0) {

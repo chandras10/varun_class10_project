@@ -7,43 +7,37 @@ import java.util.*;
 public class GridDrawer extends JFrame{
 
     JFrame frame;
-
+    boolean state = false;
     int columns = 7;
     int rows = 7;
-    boolean TheCoordsState[][] = new boolean[columns][rows];
 
-    public GridDrawer() {
+    public void setUpGrid() {
         //TheCoordsState[2][2] = true;
-        
-        setState();
-        
         frame = new JFrame();  
         frame.setSize(400, 400);
         frame.setVisible(true);
-        grid theGrid = new grid();
+        grid theGrid = new grid(false);
         frame.add(theGrid);
     }
 
-    public void setState() {
-        int j = 0;
-
-        for (int i = 0; i < 7; i++) {
-
-            j = 0;
-            //int k = i + 97;
-            //char ch = (char)k;
-            //String ch2 = Character.toString(ch);
-
-            TheCoordsState[i][j] = false; //ch2.concat(Integer.toString(j));
-            for (j = 0; j < 7;j++) {
-                TheCoordsState[i][j] = false; //ch2.concat(Integer.toString(j));
-            }
-
-        }
+    public void drawNewGrid(boolean theState) {
+        JFrame newFrame = new JFrame();  
+        newFrame.setSize(400, 400);
+        newFrame.setVisible(true);
+        grid newGrid = new grid(theState);
+        newFrame.add(newGrid);
     }
     
     public class grid extends JPanel {
+        
+        grid (boolean theState) {
+            state = theState;
+        }
+        
         public void paintComponent (Graphics g) {
+            
+            super.paintComponent(g);
+            
             g.setColor(Color.black);
             int width = this.getWidth();
             int height = this.getHeight();
@@ -62,9 +56,9 @@ public class GridDrawer extends JFrame{
 
                 for (int i = 0; i < numbersX.length; i++) {
 
-                    if (TheCoordsState[j][i] == false) {
+                    if (state == false) {
                         g.setColor(Color.white);
-                    } else if (TheCoordsState[j][i] == true) {
+                    } else if (state == true) {
                         g.setColor(Color.orange);
                     }
 
