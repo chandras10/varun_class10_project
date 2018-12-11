@@ -10,6 +10,7 @@ public class BattleGameLauncher {
     GameHelper helper = new GameHelper();
     private ArrayList<BattleGame> enemyList = new ArrayList<BattleGame>();
     private int numOfGuesses = 0;
+    String userGuess = "";
     
     GridDrawer theGrid;
     
@@ -48,7 +49,7 @@ public class BattleGameLauncher {
         
         while(!enemyList.isEmpty()) {
             
-            String userGuess = helper.getUserInput();
+            userGuess = helper.getUserInput();
             checkUserGuess(userGuess);
             
         }//end while
@@ -70,7 +71,7 @@ public class BattleGameLauncher {
                 break;
             }else if(result.equals("sunk")){
                 enemyList.remove(enemyToSet);
-                theGrid.drawNewGrid(true);
+                theGrid.drawNewGrid(true, userGuess);
                 System.out.println("You sunk: "+ enemyToSet.getName());
                 break;
             }

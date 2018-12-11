@@ -7,37 +7,56 @@ import java.util.*;
 public class GridDrawer extends JFrame{
 
     JFrame frame;
-    boolean state = false;
     int columns = 7;
     int rows = 7;
+
+    boolean state[][] = new boolean[columns][rows];
 
     public void setUpGrid() {
         //TheCoordsState[2][2] = true;
         frame = new JFrame();  
         frame.setSize(400, 400);
         frame.setVisible(true);
-        grid theGrid = new grid(false);
+
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                state[i][j] = false;
+            }
+        }
+
+        grid theGrid = new grid(false, "a0");
         frame.add(theGrid);
     }
 
-    public void drawNewGrid(boolean theState) {
+    public void drawNewGrid(boolean theState, String theGuess) {
         JFrame newFrame = new JFrame();  
         newFrame.setSize(400, 400);
         newFrame.setVisible(true);
-        grid newGrid = new grid(theState);
+        grid newGrid = new grid(theState, theGuess);
         newFrame.add(newGrid);
     }
-    
+
     public class grid extends JPanel {
-        
-        grid (boolean theState) {
-            state = theState;
+
+        grid (boolean theState, String theGuess) {
+            
+            char ch = theGuess.charAt(0);
+            char num = theGuess.charAt(1);
+            
+            int c = (int)ch - 97;
+            int n = (int)num - 48;
+            
+            for (int i = 0; i < columns; i++) {
+                for (int j = 0; j < rows; j++) {
+                    state[c][n] = theState;
+                }
+            }
         }
-        
+
         public void paintComponent (Graphics g) {
-            
+
             super.paintComponent(g);
-            
+
             g.setColor(Color.black);
             int width = this.getWidth();
             int height = this.getHeight();
@@ -56,9 +75,9 @@ public class GridDrawer extends JFrame{
 
                 for (int i = 0; i < numbersX.length; i++) {
 
-                    if (state == false) {
+                    if (state[j][i] == false) {
                         g.setColor(Color.white);
-                    } else if (state == true) {
+                    } else if (state[j][i] == true) {
                         g.setColor(Color.orange);
                     }
 
