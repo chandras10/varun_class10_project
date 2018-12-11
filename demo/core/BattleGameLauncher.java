@@ -68,6 +68,7 @@ public class BattleGameLauncher {
             result = enemyToSet.checkYourself(userGuess);
             
             if(result.equals("hit")) {
+                theGrid.drawNewGrid(true, userGuess);
                 break;
             }else if(result.equals("sunk")){
                 enemyList.remove(enemyToSet);
