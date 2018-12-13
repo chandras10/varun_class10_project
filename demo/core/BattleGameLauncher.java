@@ -30,7 +30,6 @@ public class BattleGameLauncher {
         
         theGrid = new GridDrawer(); // draw the grid
         theGrid.setUpGrid();
-        //theGrid.TheCoordsState[1][1] = true;
         
         //  Some instruction to the player...
         
@@ -68,11 +67,11 @@ public class BattleGameLauncher {
             result = enemyToSet.checkYourself(userGuess);
             
             if(result.equals("hit")) {
-                theGrid.drawNewGrid(true, userGuess);
+                theGrid.setState(true, userGuess);
                 break;
             }else if(result.equals("sunk")){
                 enemyList.remove(enemyToSet);
-                theGrid.drawNewGrid(true, userGuess);
+                theGrid.setState(true, userGuess);
                 System.out.println("You sunk: "+ enemyToSet.getName());
                 break;
             }
@@ -88,7 +87,7 @@ public class BattleGameLauncher {
         System.out.println("GAME OVER");
        
         if (numOfGuesses <= 18)
-            System.out.println("Time to play another game. Try your GF's fucking feelings this time.");
+            System.out.println("Nice...");
         else 
             System.out.println("You lost");
             
