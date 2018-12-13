@@ -1,3 +1,5 @@
+package OS;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -20,13 +22,13 @@ public class Desktop {
         Container contentPane = f.getContentPane();
         contentPane.add(toolbar);
 
-        JButton b=new JButton("Calculator",new ImageIcon("calcul.png"));  
-        JButton b1=new JButton("Sorter", new ImageIcon("sort.jpg"));
-        JButton b2=new JButton("Cricket",new ImageIcon("cri.jpg"));
-        JButton b3=new JButton("Rock Paper Scissors", new ImageIcon("rps.png"));
-        JButton b4=new JButton("Clock",new ImageIcon("watch.png"));
-        JButton b5=new JButton("Quiz",new ImageIcon("quiz.png"));
-        JButton b6=new JButton("Battle Game",new ImageIcon("battleship.jpg"));
+        JButton b=new JButton("Calculator",new ImageIcon(getClass().getResource("calcul.png")));  
+        JButton b1=new JButton("Sorter", new ImageIcon(getClass().getResource("sort.jpg")));
+        JButton b2=new JButton("Cricket",new ImageIcon(getClass().getResource("cri.jpg")));
+        JButton b3=new JButton("Rock Paper Scissors", new ImageIcon(getClass().getResource("rps.png")));
+        JButton b4=new JButton("Clock",new ImageIcon(getClass().getResource("watch.png")));
+        JButton b5=new JButton("Quiz",new ImageIcon(getClass().getResource("quiz.png")));
+        JButton b6=new JButton("Battle Game",new ImageIcon(getClass().getResource("battleship.jpg")));
         f.add(b); 
         f.add(b1);
         f.add(b2);
