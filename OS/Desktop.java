@@ -13,14 +13,6 @@ import javax.swing.JToolBar;
 public class Desktop {
     Desktop(){    
         JFrame f=new JFrame("OS");
-        JToolBar toolbar=new JToolBar(JToolBar.TOP);
-        toolbar.setRollover(false);  
-        JButton button = new JButton("File");  
-        toolbar.add(button);  
-        toolbar.addSeparator();  
-        toolbar.add(new JButton("Edit"));
-        Container contentPane = f.getContentPane();
-        contentPane.add(toolbar);
 
         JButton b=new JButton("Calculator",new ImageIcon(getClass().getResource("calcul.png")));  
         JButton b1=new JButton("Sorter", new ImageIcon(getClass().getResource("sort.jpg")));
@@ -31,11 +23,8 @@ public class Desktop {
         JButton b6=new JButton("Battle Game",new ImageIcon(getClass().getResource("battleship.jpg")));
         f.add(b); 
         f.add(b1);
-        f.add(b2);
         f.add(b3);
         f.add(b4);
-        f.add(b5);
-        f.add(b6);
         f.setSize(10000,10000);    
         f.setLayout(new GridLayout(2,3));    
         f.setVisible(true);    
@@ -56,12 +45,12 @@ public class Desktop {
                     Sorter.main();
                 }
             });
-        b2.addActionListener(new ActionListener() {
+        /*b2.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
                     Cricket.main();
                 }
-            });
+            });*/
         b3.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
@@ -74,7 +63,7 @@ public class Desktop {
                     clock.main();
                 }
             });
-        b5.addActionListener(new ActionListener() {
+        /*b5.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0){
                     Quiz.main();
@@ -85,7 +74,7 @@ public class Desktop {
                 public void actionPerformed(ActionEvent arg0){
                     BattleGameLauncher.main();
                 }
-            });
+            });*/
 
     }
 
