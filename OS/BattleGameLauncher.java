@@ -1,6 +1,5 @@
 package OS;
 
-
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
@@ -13,6 +12,8 @@ public class BattleGameLauncher {
     private ArrayList<BattleGame> enemyList = new ArrayList<BattleGame>();
     private int numOfGuesses = 0;
     String userGuess = "";
+
+    boolean shipSunk = false;
 
     GridDrawer theGrid;
 
@@ -74,24 +75,25 @@ public class BattleGameLauncher {
             }else if(result.equals("sunk")){
                 enemyList.remove(enemyToSet);
                 theGrid.setState(true, userGuess);
-                System.out.println("You sunk: "+ enemyToSet.getName());
+                shipSunk = true;
+                System.out.println("You sunk: "+ enemyToSet.getName() + "\n");
                 break;
             }
-
+            
         } // end for
 
-        System.out.println(result);
-
+        if (shipSunk == true) {
+                shipSunk = false;
+            } else {
+                System.out.println(result+"\n");
+            }
+        
     } //end checkUserGuess method
 
     public void finishGame() {
 
         System.out.println("GAME OVER");
-
-        if (numOfGuesses <= 18)
-            System.out.println("Nice...");
-        else 
-            System.out.println("You lost");
+        System.out.println("\n\t\tYou took: " + numOfGuesses + " guesses :|");
 
     }// end finish game method
 
