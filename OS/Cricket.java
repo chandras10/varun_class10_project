@@ -26,6 +26,13 @@ class Cricket
             r = (int)((Math.random()*(10-1)+1));
             System.out.print(" "+r+"\n");
 
+            // We need to fix this line as this is just silly...
+            
+            if(play == 0) {
+                System.out.println("You gave up :(");
+                System.exit(0);
+            }
+            
             if(play>10)
             {
                 System.out.println("\t\t\t\tYou need enter a number less than"+
@@ -80,6 +87,13 @@ class Cricket
             r = (int)((Math.random()*(10-1)+1));
             System.out.print(" "+r+"\n");
 
+            // We need to fix this line as this is just silly...
+            
+            if(play == 0) {
+                System.out.println("You gave up :(");
+                System.exit(0);
+            }
+            
             if(play>10)
             {
                 System.out.println("\t\t\t\tYou need enter a number less than"+
