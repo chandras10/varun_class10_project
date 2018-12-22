@@ -49,9 +49,5 @@ public void display()
 {
 b.setText(timeString);
 }
-public static void  main()
-{
-new clock();
-}
 }
 

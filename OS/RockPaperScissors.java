@@ -40,7 +40,7 @@ class RockPaperScissors extends JFrame
 
    
 
-    public static  void main()
+    /*public static  void main()
     {
         call = new RockPaperScissors();
        
@@ -48,7 +48,7 @@ class RockPaperScissors extends JFrame
         call.random();
         obj.button();
 
-    }
+    }*/
 
     
 }

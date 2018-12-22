@@ -127,10 +127,4 @@ class Calculator extends JFrame implements ActionListener
         editable = false;
     }
 
-    //main method
-    public static void main ()
-    {
-        Calculator calculator = new Calculator();
-        calculator.setVisible(true);
-    }
 }

@@ -235,7 +235,7 @@ public class Sorter extends JPanel implements ActionListener {
      * this method should be invoked from the
      * event dispatch thread.
      */
-    private static void createAndShowGUI() {
+    protected static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("Sorting Demo");
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -249,7 +249,7 @@ public class Sorter extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
-    public static void main() {
+    /*public static void main() {
         //Schedule a job for the event dispatching thread:
         //creating and showing this application's GUI.
         SwingUtilities.invokeLater(new Runnable() {
@@ -259,5 +259,5 @@ public class Sorter extends JPanel implements ActionListener {
                 createAndShowGUI();
             }
         });
-    }
+    }*/
 }

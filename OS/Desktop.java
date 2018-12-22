@@ -96,37 +96,37 @@ public class Desktop implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
 
-        System.out.println(event.getActionCommand());
-
         if (event.getActionCommand().equals(Calculator)) {
-            //Calculator newCalculator = new Calculator();
             sortDemo("Cal");
             return;
         }
         if (event.getActionCommand().equals(Sorter)) {
+            sortDemo("sorter");
             Sorter newSorter = new Sorter();
             return;
         }
         if (event.getActionCommand().equals(Cricket)) {
+            sortDemo("cricket");
             Cricket newCricket = new Cricket();
             return;
         }
         if (event.getActionCommand().equals(RockPaperScissors)) {
+            sortDemo("rps");
             RockPaperScissors newRPS = new RockPaperScissors();
             return;
         }
         if (event.getActionCommand().equals(Clock)) {
+            sortDemo("clock");
             clock newClock = new clock();
             return;
         }
         if (event.getActionCommand().equals(Quiz)) {
-            //Quiz newQuiz = new Quiz();
             sortDemo("Quiz");
             return;
         }
         if (event.getActionCommand().equals(BattleGame)) {
-            //BattleGameLauncher newBattleGame = new BattleGameLauncher();
             sortDemo("BG");
+            return;
         }
 
     }
@@ -136,13 +136,39 @@ public class Desktop implements ActionListener {
 
             public void run() {
 
-                if (name == "Cal") {
-                    Calculator newCalculator = new Calculator();
-                    newCalculator.main();
+                if (name.equals("Cal")) {
+                    Calculator newCal = new Calculator();
+                    newCal.setVisible(true);
+                    return;
                 }
-                if (name == "BG") {
+                if (name.equals("sorter")) {
+                    Sorter newSort = new Sorter();
+                    newSort.createAndShowGUI();
+                    return;
+                }
+                if (name.equals("cricket")) {
+                    Cricket newCricket = new Cricket();
+                    newCricket.startPlaying();
+                    return;
+                }
+                if (name.equals("rps")) {
+                    RockPaperScissors newRPS = new RockPaperScissors();
+                    newRPS.random();
+                    newRPS.obj.button();
+                    return;
+                }
+                if (name.equals("rps")) {
+                    clock newClock = new clock();
+                    return;
+                }
+                if (name.equals("Quiz")) {
+                    Quiz newQuiz = new Quiz();
+                    newQuiz.main(null);
+                    return;
+                }
+                if (name.equals("BG")) {
                     BattleGameLauncher newBattleGame = new BattleGameLauncher();
-                    newBattleGame.main();
+                    newBattleGame.setUpGame();
                 }
             }
         }

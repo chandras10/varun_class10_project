@@ -122,7 +122,7 @@ class Cricket
 
     }
 
-    public static void main()
+    public void startPlaying()
     {
         for(;;){
             System.out.println("\t\t\t\tTOSS\n");

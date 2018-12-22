@@ -45,6 +45,8 @@ public class BattleGameLauncher {
 
         } // end for
 
+        
+        startPlaying();
     } // end setUpGame method
 
     public void startPlaying() {
@@ -52,6 +54,10 @@ public class BattleGameLauncher {
         while(!enemyList.isEmpty()) {
 
             userGuess = helper.getUserInput();
+            if(userGuess.equalsIgnoreCase("Quit")) {
+                System.out.println("You gave up :(");
+                System.exit(0);
+            }
             checkUserGuess(userGuess);
 
         }//end while
@@ -96,10 +102,4 @@ public class BattleGameLauncher {
         System.out.println("\n\t\tYou took: " + numOfGuesses + " guesses :|");
 
     }// end finish game method
-
-    public static void main() {  
-        BattleGameLauncher game = new BattleGameLauncher();
-        game.setUpGame();
-        game.startPlaying();
-    }
 }// end class
