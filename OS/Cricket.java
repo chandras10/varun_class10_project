@@ -223,5 +223,6 @@ class Cricket
             }
         }
 
+        System.exit(0);
     }
 }

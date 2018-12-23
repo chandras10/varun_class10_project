@@ -100,6 +100,7 @@ public class BattleGameLauncher {
 
         System.out.println("GAME OVER");
         System.out.println("\n\t\tYou took: " + numOfGuesses + " guesses :|");
+        System.exit(0);
 
     }// end finish game method
 }// end class

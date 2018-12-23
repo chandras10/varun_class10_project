@@ -89,7 +89,6 @@ public class Quiz{
             }
             System.out.println("Your Final score : "+score);
 
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -104,5 +103,6 @@ public class Quiz{
             }
 
         }
-
-    }}
+        System.exit(0);
+    }
+}
