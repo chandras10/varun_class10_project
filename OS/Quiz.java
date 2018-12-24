@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Quiz{
 
-    public static void main(String[] args)
+    public void startQuiz()
     { 
         String csvFile = "Quiz.csv";
         BufferedReader br = null;

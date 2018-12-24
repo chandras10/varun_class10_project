@@ -163,12 +163,13 @@ public class Desktop implements ActionListener {
                 }
                 if (name.equals("Quiz")) {
                     Quiz newQuiz = new Quiz();
-                    newQuiz.main(null);
+                    newQuiz.startQuiz();
                     return;
                 }
                 if (name.equals("BG")) {
                     BattleGameLauncher newBattleGame = new BattleGameLauncher();
                     newBattleGame.setUpGame();
+                    return;
                 }
             }
         }
