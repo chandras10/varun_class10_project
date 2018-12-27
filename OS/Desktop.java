@@ -158,8 +158,9 @@ public class Desktop implements ActionListener {
         
         c.fill = GridBagConstraints.NONE;     
         c.gridwidth = GridBagConstraints.CENTER;
-        c.anchor = GridBagConstraints.PAGE_START;
-        c.weightx = 0.1;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.insets = new Insets(20, 20, 20, 20);
+        c.weightx = 0.001;
         desktopPanel.add(b1, c);
 
         c.fill = GridBagConstraints.NONE;
@@ -180,22 +181,18 @@ public class Desktop implements ActionListener {
 
         c.fill = GridBagConstraints.NONE;     
         c.gridwidth = GridBagConstraints.RELATIVE;
-        c.weightx = 0.0;
         desktopPanel.add(b4, c);
 
         c.fill = GridBagConstraints.NONE;     
         c.gridwidth = GridBagConstraints.REMAINDER;
-        c.weightx = 0.0;
         desktopPanel.add(b5, c); 
 
         c.fill = GridBagConstraints.NONE;
         c.gridwidth = GridBagConstraints.RELATIVE;
-        c.weightx = 0.0;
         desktopPanel.add(b6, c);
 
         c.fill = GridBagConstraints.NONE; 
         c.gridwidth = GridBagConstraints.RELATIVE;
-        c.weightx = 0.0;
         desktopPanel.add(b7, c);
         
         JLabel label = new JLabel("I am the taskbar");
