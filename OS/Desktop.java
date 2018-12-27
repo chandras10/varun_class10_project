@@ -135,8 +135,7 @@ public class Desktop implements ActionListener {
         c.fill = GridBagConstraints.NONE;     
         c.gridwidth = GridBagConstraints.CENTER;
         c.anchor = GridBagConstraints.PAGE_START;
-        c.weightx = 1.0;
-        c.weighty = 0.5;
+        c.weightx = 0.1;
         desktopPanel.add(b1, c);
 
         c.fill = GridBagConstraints.NONE;
@@ -146,8 +145,8 @@ public class Desktop implements ActionListener {
 
         c.fill = GridBagConstraints.NONE;
         c.gridwidth = GridBagConstraints.REMAINDER;
-        c.weightx = 1.0;
-        c.weighty = 0.5;
+        c.weightx = 0.1;
+        c.weighty = 0.1;
         desktopPanel.add(b2, c);
 
         c.fill = GridBagConstraints.NONE;  
@@ -175,9 +174,12 @@ public class Desktop implements ActionListener {
         c.weightx = 0.0;
         desktopPanel.add(b7, c);
 
+        JLabel label = new JLabel("I am the taskbar");
+        taskbarPanel.add(label);
+        
         //frame.setLayout(new GridLayout(2,1)); 
-        frame.add(desktopPanel);
-        //frame.add(taskbarPanel);
+        frame.getContentPane().add(desktopPanel, BorderLayout.CENTER);
+        frame.getContentPane().add(taskbarPanel, BorderLayout.SOUTH);
 
         frame.addWindowListener(new WindowAdapter() {
                 @Override
