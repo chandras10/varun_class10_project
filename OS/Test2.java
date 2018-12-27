@@ -17,16 +17,9 @@ public class Test2{
 
     public void scaleImage() {
 
-        ImageIcon icon = new ImageIcon((getClass().getResource("sort.jpg")));
-        Image i = icon.getImage();
-        Image newImage = i.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        JLabel label = new JLabel("@@@@");
+        JOptionPane.showMessageDialog( label,  "Do you really want to exit?");
         JFrame frame = new JFrame();
-        
-        JButton b1 = new JButton(new ImageIcon(newImage));
-        b1.setBorderPainted(false);
-        b1.setBorder(null);
-        
-        frame.add(b1);
         frame.setSize(1000, 1000);
         frame.setVisible(true);
 

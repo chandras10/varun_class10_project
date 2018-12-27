@@ -11,11 +11,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
 import javax.swing.JToolBar;
+import javax.swing.JOptionPane;
 
 public class Desktop implements ActionListener {
 
     // instance variables
-    
+
     JFrame frame;    
     JPanel desktopPanel;
     JPanel taskbarPanel;
@@ -27,6 +28,7 @@ public class Desktop implements ActionListener {
     String Clock;
     String Quiz;
     String BattleGame;
+    String exit;
 
     JButton b1;
     JButton b2;
@@ -36,8 +38,10 @@ public class Desktop implements ActionListener {
     JButton b6;
     JButton b7;
 
+    JButton shutDownButton;
+
     Desktop(){    
-        
+
         frame = new JFrame();
         desktopPanel = new JPanel();
         taskbarPanel = new JPanel();
@@ -49,48 +53,49 @@ public class Desktop implements ActionListener {
         Clock = "Clock";
         Quiz = "Quiz";
         BattleGame = "Battle";
-        
+        exit = "SHUT DOWN";
+
         // setting the frame size to fill the screen
-        
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(screenSize.width, screenSize.height);
 
         // Resizing the images
-        
+
         ImageIcon icon1 = new ImageIcon((getClass().getResource("calcul.png"))); // the icon of calculator
         Image cal_Image = icon1.getImage();
         Image calculator_Image = cal_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        
+
         ImageIcon icon2 = new ImageIcon((getClass().getResource("sort.jpg"))); // the icon of sorter
         Image s_Image = icon2.getImage();
         Image sort_Image = s_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        
+
         ImageIcon icon3 = new ImageIcon((getClass().getResource("cri.jpg"))); // the icon of cricket
         Image cri_Image = icon3.getImage();
         Image cricket_Image = cri_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        
+
         ImageIcon icon4 = new ImageIcon((getClass().getResource("rps.png"))); // the icon of rock, paper, scissors
         Image rps_Image = icon4.getImage();
         Image RPS_Image = rps_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        
+
         ImageIcon icon5 = new ImageIcon((getClass().getResource("watch.png"))); // the icon of watch
         Image cl_Image = icon5.getImage();
         Image clock_Image = cl_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        
+
         ImageIcon icon6 = new ImageIcon((getClass().getResource("quiz.png"))); // the icon of quiz
         Image q_Image = icon6.getImage();
         Image quiz_Image = q_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        
+
         ImageIcon icon7 = new ImageIcon((getClass().getResource("battleship.jpg"))); // the icon of battleship game
         Image b_Image = icon7.getImage();
         Image BattleShip_Image = b_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        
+
         ImageIcon wallpaper = new ImageIcon((getClass().getResource("background.jpg"))); // the icon of wallpaper
         Image wp = wallpaper.getImage();
         Image WallPaper = wp.getScaledInstance(screenSize.width, screenSize.height, Image.SCALE_SMOOTH);
-        
+
         // create the buttons
-        
+
         b1=new JButton(new ImageIcon(calculator_Image));  
         b2=new JButton(new ImageIcon(sort_Image));
         b3=new JButton(new ImageIcon(cricket_Image));
@@ -99,31 +104,36 @@ public class Desktop implements ActionListener {
         b6=new JButton(new ImageIcon(quiz_Image));
         b7=new JButton(new ImageIcon(BattleShip_Image));
 
+        shutDownButton = new JButton(exit);
+
         //make only the icons visible
-        
+
         b1.setBorderPainted(false);
         b1.setBorder(null);
-        
+
         b2.setBorderPainted(false);
         b2.setBorder(null);
-        
+
         b3.setBorderPainted(false);
         b3.setBorder(null);
 
         b4.setBorderPainted(false);
         b4.setBorder(null);
-        
+
         b5.setBorderPainted(false);
         b5.setBorder(null);
-        
+
         b6.setBorderPainted(false);
         b6.setBorder(null);
-        
+
         b7.setBorderPainted(false);
         b7.setBorder(null);
-        
+
+        shutDownButton.setBackground(Color.GRAY);
+        shutDownButton.setForeground(Color.BLACK);
+
         // set the action commands
-        
+
         b1.setActionCommand(Calculator);
         b2.setActionCommand(Sorter);
         b3.setActionCommand(Cricket);
@@ -132,8 +142,10 @@ public class Desktop implements ActionListener {
         b6.setActionCommand(Quiz);
         b7.setActionCommand(BattleGame);
 
+        shutDownButton.setActionCommand(exit);
+
         // add the action listener
-        
+
         b1.addActionListener(this);
         b2.addActionListener(this);
         b3.addActionListener(this);
@@ -141,21 +153,20 @@ public class Desktop implements ActionListener {
         b5.addActionListener(this);
         b6.addActionListener(this);
         b7.addActionListener(this);
-        
-        
+
+        shutDownButton.addActionListener(this);
         // add the wallpaper to the desktop
-        
         JLabel desktop_Wallpaper = new JLabel(new ImageIcon(WallPaper));
         desktopPanel.setBackground(Color.black);
-        
+
         // add the buttons to the Panel
 
         GridBagLayout gridbag = new GridBagLayout();
-        
+
         desktopPanel.setLayout(gridbag);
 
         GridBagConstraints c = new GridBagConstraints();
-        
+
         c.fill = GridBagConstraints.NONE;     
         c.gridwidth = GridBagConstraints.CENTER;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -194,17 +205,15 @@ public class Desktop implements ActionListener {
         c.fill = GridBagConstraints.NONE; 
         c.gridwidth = GridBagConstraints.RELATIVE;
         desktopPanel.add(b7, c);
-        
-        JLabel label = new JLabel("I am the taskbar");
-        taskbarPanel.add(label);
 
-        
+        taskbarPanel.setLayout(new GridLayout(0, 8));
+
+        taskbarPanel.add(shutDownButton);
         // put everything together
-        
         //frame.setLayout(new GridLayout(2,1)); 
         frame.getContentPane().add(desktopPanel, BorderLayout.CENTER);
         frame.getContentPane().add(taskbarPanel, BorderLayout.SOUTH);
-        
+
         frame.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
@@ -249,6 +258,15 @@ public class Desktop implements ActionListener {
         if (event.getActionCommand().equals(BattleGame)) {
             setTasks("BG");
             return;
+        }
+        if(event.getActionCommand().equals(exit)) {
+            int reply = JOptionPane.showConfirmDialog(null, "Do You Really Want To Exit???", null, JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+            else {
+                return;
+            }
         }
 
     }
@@ -309,5 +327,5 @@ public class Desktop implements ActionListener {
             }
         }while(true);
     } //end main
-    
+
 }   // end class 
