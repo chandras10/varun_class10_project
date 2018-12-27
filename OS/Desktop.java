@@ -15,6 +15,8 @@ import javax.swing.JToolBar;
 public class Desktop implements ActionListener {
 
     JFrame frame;    
+    JPanel desktopPanel;
+    JPanel taskbarPanel;
 
     String Calculator;
     String Sorter;
@@ -34,6 +36,8 @@ public class Desktop implements ActionListener {
 
     Desktop(){    
         frame = new JFrame();
+        desktopPanel = new JPanel();
+        taskbarPanel = new JPanel();
 
         Calculator = "Calculator";
         Sorter = "Sorter";
@@ -43,16 +47,67 @@ public class Desktop implements ActionListener {
         Quiz = "Quiz";
         BattleGame = "Battle";
 
+        // Storing the images in variables
+        
+        ImageIcon icon1 = new ImageIcon((getClass().getResource("calcul.png"))); // the icon of calculator
+        Image cal_Image = icon1.getImage();
+        Image calculator_Image = cal_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        
+        ImageIcon icon2 = new ImageIcon((getClass().getResource("sort.jpg"))); // the icon of sorter
+        Image s_Image = icon2.getImage();
+        Image sort_Image = s_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        
+        ImageIcon icon3 = new ImageIcon((getClass().getResource("cri.jpg"))); // the icon of cricket
+        Image cri_Image = icon3.getImage();
+        Image cricket_Image = cri_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        
+        ImageIcon icon4 = new ImageIcon((getClass().getResource("rps.png"))); // the icon of rock, paper, scissors
+        Image rps_Image = icon4.getImage();
+        Image RPS_Image = rps_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        
+        ImageIcon icon5 = new ImageIcon((getClass().getResource("watch.png"))); // the icon of watch
+        Image cl_Image = icon5.getImage();
+        Image clock_Image = cl_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        
+        ImageIcon icon6 = new ImageIcon((getClass().getResource("quiz.png"))); // the icon of quiz
+        Image q_Image = icon6.getImage();
+        Image quiz_Image = q_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        
+        ImageIcon icon7 = new ImageIcon((getClass().getResource("battleship.jpg"))); // the icon of battleship game
+        Image b_Image = icon7.getImage();
+        Image BattleShip_Image = b_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        
         // create the buttons
+        
+        b1=new JButton(new ImageIcon(calculator_Image));  
+        b2=new JButton(new ImageIcon(sort_Image));
+        b3=new JButton(new ImageIcon(cricket_Image));
+        b4=new JButton(new ImageIcon(RPS_Image));
+        b5=new JButton(new ImageIcon(clock_Image));
+        b6=new JButton(new ImageIcon(quiz_Image));
+        b7=new JButton(new ImageIcon(BattleShip_Image));
 
-        b1=new JButton(new ImageIcon(getClass().getResource("calcul.png")));  
-        b2=new JButton(new ImageIcon(getClass().getResource("sort.jpg")));
-        b3=new JButton(new ImageIcon(getClass().getResource("cri.jpg")));
-        b4=new JButton(new ImageIcon(getClass().getResource("rps.png")));
-        b5=new JButton(new ImageIcon(getClass().getResource("watch.png")));
-        b6=new JButton(new ImageIcon(getClass().getResource("quiz.png")));
-        b7=new JButton(new ImageIcon(getClass().getResource("battleship.jpg")));
+        b1.setBorderPainted(false);
+        b1.setBorder(null);
+        
+        b2.setBorderPainted(false);
+        b2.setBorder(null);
+        
+        b3.setBorderPainted(false);
+        b3.setBorder(null);
 
+        b4.setBorderPainted(false);
+        b4.setBorder(null);
+        
+        b5.setBorderPainted(false);
+        b5.setBorder(null);
+        
+        b6.setBorderPainted(false);
+        b6.setBorder(null);
+        
+        b7.setBorderPainted(false);
+        b7.setBorder(null);
+        
         // set the action commands
         b1.setActionCommand(Calculator);
         b2.setActionCommand(Sorter);
@@ -71,15 +126,58 @@ public class Desktop implements ActionListener {
         b6.addActionListener(this);
         b7.addActionListener(this);
 
-        // add the buttons to the frame
+        // add the buttons to the Panel
 
-        frame.add(b1); 
-        frame.add(b2);
-        frame.add(b3);
-        frame.add(b4);
-        frame.add(b5); 
-        frame.add(b6);
-        frame.add(b7);
+        desktopPanel.setLayout(new GridBagLayout());
+
+        GridBagConstraints c = new GridBagConstraints();
+        
+        c.fill = GridBagConstraints.NONE;     
+        c.gridwidth = GridBagConstraints.CENTER;
+        c.anchor = GridBagConstraints.PAGE_START;
+        c.weightx = 1.0;
+        c.weighty = 0.5;
+        desktopPanel.add(b1, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridwidth = GridBagConstraints.RELATIVE;
+        c.weightx = 0.0;
+        desktopPanel.add(b2, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.weightx = 1.0;
+        c.weighty = 0.5;
+        desktopPanel.add(b2, c);
+
+        c.fill = GridBagConstraints.NONE;  
+        c.gridwidth = GridBagConstraints.RELATIVE;
+        c.weightx = 0.0;
+        desktopPanel.add(b3, c);
+
+        c.fill = GridBagConstraints.NONE;     
+        c.gridwidth = GridBagConstraints.RELATIVE;
+        c.weightx = 0.0;
+        desktopPanel.add(b4, c);
+
+        c.fill = GridBagConstraints.NONE;     
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.weightx = 0.0;
+        desktopPanel.add(b5, c); 
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridwidth = GridBagConstraints.RELATIVE;
+        c.weightx = 0.0;
+        desktopPanel.add(b6, c);
+
+        c.fill = GridBagConstraints.NONE; 
+        c.gridwidth = GridBagConstraints.RELATIVE;
+        c.weightx = 0.0;
+        desktopPanel.add(b7, c);
+
+        //frame.setLayout(new GridLayout(2,1)); 
+        frame.add(desktopPanel);
+        //frame.add(taskbarPanel);
 
         frame.addWindowListener(new WindowAdapter() {
                 @Override
@@ -88,8 +186,8 @@ public class Desktop implements ActionListener {
                 }
             });
 
-        frame.setSize(10000,10000);    
-        frame.setLayout(new GridLayout(2,3));    
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(screenSize.width, screenSize.height);
         frame.setVisible(true);    
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
     }
