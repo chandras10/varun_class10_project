@@ -14,6 +14,8 @@ import javax.swing.JToolBar;
 
 public class Desktop implements ActionListener {
 
+    // instance variables
+    
     JFrame frame;    
     JPanel desktopPanel;
     JPanel taskbarPanel;
@@ -35,6 +37,7 @@ public class Desktop implements ActionListener {
     JButton b7;
 
     Desktop(){    
+        
         frame = new JFrame();
         desktopPanel = new JPanel();
         taskbarPanel = new JPanel();
@@ -46,36 +49,45 @@ public class Desktop implements ActionListener {
         Clock = "Clock";
         Quiz = "Quiz";
         BattleGame = "Battle";
+        
+        // setting the frame size to fill the screen
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(screenSize.width, screenSize.height);
 
-        // Storing the images in variables
+        // Resizing the images
         
         ImageIcon icon1 = new ImageIcon((getClass().getResource("calcul.png"))); // the icon of calculator
         Image cal_Image = icon1.getImage();
-        Image calculator_Image = cal_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        Image calculator_Image = cal_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         
         ImageIcon icon2 = new ImageIcon((getClass().getResource("sort.jpg"))); // the icon of sorter
         Image s_Image = icon2.getImage();
-        Image sort_Image = s_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        Image sort_Image = s_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         
         ImageIcon icon3 = new ImageIcon((getClass().getResource("cri.jpg"))); // the icon of cricket
         Image cri_Image = icon3.getImage();
-        Image cricket_Image = cri_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        Image cricket_Image = cri_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         
         ImageIcon icon4 = new ImageIcon((getClass().getResource("rps.png"))); // the icon of rock, paper, scissors
         Image rps_Image = icon4.getImage();
-        Image RPS_Image = rps_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        Image RPS_Image = rps_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         
         ImageIcon icon5 = new ImageIcon((getClass().getResource("watch.png"))); // the icon of watch
         Image cl_Image = icon5.getImage();
-        Image clock_Image = cl_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        Image clock_Image = cl_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         
         ImageIcon icon6 = new ImageIcon((getClass().getResource("quiz.png"))); // the icon of quiz
         Image q_Image = icon6.getImage();
-        Image quiz_Image = q_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        Image quiz_Image = q_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         
         ImageIcon icon7 = new ImageIcon((getClass().getResource("battleship.jpg"))); // the icon of battleship game
         Image b_Image = icon7.getImage();
-        Image BattleShip_Image = b_Image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        Image BattleShip_Image = b_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        
+        ImageIcon wallpaper = new ImageIcon((getClass().getResource("background.jpg"))); // the icon of wallpaper
+        Image wp = wallpaper.getImage();
+        Image WallPaper = wp.getScaledInstance(screenSize.width, screenSize.height, Image.SCALE_SMOOTH);
         
         // create the buttons
         
@@ -87,6 +99,8 @@ public class Desktop implements ActionListener {
         b6=new JButton(new ImageIcon(quiz_Image));
         b7=new JButton(new ImageIcon(BattleShip_Image));
 
+        //make only the icons visible
+        
         b1.setBorderPainted(false);
         b1.setBorder(null);
         
@@ -109,6 +123,7 @@ public class Desktop implements ActionListener {
         b7.setBorder(null);
         
         // set the action commands
+        
         b1.setActionCommand(Calculator);
         b2.setActionCommand(Sorter);
         b3.setActionCommand(Cricket);
@@ -118,6 +133,7 @@ public class Desktop implements ActionListener {
         b7.setActionCommand(BattleGame);
 
         // add the action listener
+        
         b1.addActionListener(this);
         b2.addActionListener(this);
         b3.addActionListener(this);
@@ -125,10 +141,18 @@ public class Desktop implements ActionListener {
         b5.addActionListener(this);
         b6.addActionListener(this);
         b7.addActionListener(this);
-
+        
+        
+        // add the wallpaper to the desktop
+        
+        JLabel desktop_Wallpaper = new JLabel(new ImageIcon(WallPaper));
+        desktopPanel.setBackground(Color.black);
+        
         // add the buttons to the Panel
 
-        desktopPanel.setLayout(new GridBagLayout());
+        GridBagLayout gridbag = new GridBagLayout();
+        
+        desktopPanel.setLayout(gridbag);
 
         GridBagConstraints c = new GridBagConstraints();
         
@@ -173,14 +197,17 @@ public class Desktop implements ActionListener {
         c.gridwidth = GridBagConstraints.RELATIVE;
         c.weightx = 0.0;
         desktopPanel.add(b7, c);
-
+        
         JLabel label = new JLabel("I am the taskbar");
         taskbarPanel.add(label);
+
+        
+        // put everything together
         
         //frame.setLayout(new GridLayout(2,1)); 
         frame.getContentPane().add(desktopPanel, BorderLayout.CENTER);
         frame.getContentPane().add(taskbarPanel, BorderLayout.SOUTH);
-
+        
         frame.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
@@ -188,8 +215,6 @@ public class Desktop implements ActionListener {
                 }
             });
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setSize(screenSize.width, screenSize.height);
         frame.setVisible(true);    
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
     }
@@ -197,42 +222,42 @@ public class Desktop implements ActionListener {
     public void actionPerformed(ActionEvent event) {
 
         if (event.getActionCommand().equals(Calculator)) {
-            sortDemo("Cal");
+            setTasks("Cal");
             return;
         }
         if (event.getActionCommand().equals(Sorter)) {
-            sortDemo("sorter");
+            setTasks("sorter");
             Sorter newSorter = new Sorter();
             return;
         }
         if (event.getActionCommand().equals(Cricket)) {
-            sortDemo("cricket");
+            setTasks("cricket");
             Cricket newCricket = new Cricket();
             return;
         }
         if (event.getActionCommand().equals(RockPaperScissors)) {
-            sortDemo("rps");
+            setTasks("rps");
             RockPaperScissors newRPS = new RockPaperScissors();
             return;
         }
         if (event.getActionCommand().equals(Clock)) {
-            sortDemo("clock");
+            setTasks("clock");
             clock newClock = new clock();
             return;
         }
         if (event.getActionCommand().equals(Quiz)) {
-            sortDemo("Quiz");
+            setTasks("Quiz");
             return;
         }
         if (event.getActionCommand().equals(BattleGame)) {
-            sortDemo("BG");
+            setTasks("BG");
             return;
         }
 
     }
 
-    private void sortDemo(String name) {
-        class SortTask implements Runnable {
+    private void setTasks(String name) {
+        class ButtonTask implements Runnable {
 
             public void run() {
 
@@ -271,20 +296,21 @@ public class Desktop implements ActionListener {
                     newBattleGame.setUpGame();
                     return;
                 }
-            }
-        }
-        Thread t = new Thread(new SortTask());
+            }// end run
+        }// end ButtonTask
+        Thread t = new Thread(new ButtonTask());
         t.start();
     }
 
     public static void main() {    
         UIManager.put("swing.boldMetal", Boolean.FALSE);
         new Desktop(); 
-        do {
-            try {
+        do {                    // This makes sure the program is running, so as to allow individual applications to 
+            try {               // take input from the useer
                 Thread.sleep(50000);
             } catch (Exception e) {
             }
         }while(true);
-    }
-}    
+    } //end main
+    
+}   // end class 
