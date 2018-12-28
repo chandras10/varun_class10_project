@@ -6,22 +6,15 @@ import java.awt.*;
 import java.text.*;
 class clock implements Runnable
 {
-JFrame f;
 Thread t=null;
 int hrs=0,min=0,sec=0;
 String timeString="null";
-JButton b;
+JLabel label;
 clock()
 {
-f=new JFrame();
 t=new Thread(this);
 t.start();
-b=new JButton();
-b.setBounds(100,100,100,50);
-f.setLayout(null);
-f.add(b);
-f.setSize(300,400);
-f.setVisible(true);
+label=new JLabel();
 }
 public void run()
 {
@@ -47,7 +40,7 @@ catch(Exception e){}
 }
 public void display()
 {
-b.setText(timeString);
+label.setText(timeString + "   ");
 }
 }
 

@@ -206,9 +206,20 @@ public class Desktop implements ActionListener {
         c.gridwidth = GridBagConstraints.RELATIVE;
         desktopPanel.add(b7, c);
 
-        taskbarPanel.setLayout(new GridLayout(0, 8));
+        taskbarPanel.setLayout(new GridBagLayout());
+        
+        GridBagConstraints c2 = new GridBagConstraints();
 
-        taskbarPanel.add(shutDownButton);
+        
+        c2.anchor = GridBagConstraints.LINE_START;
+        c2.weightx = 1.0;
+        taskbarPanel.add(shutDownButton, c2);
+        
+        
+        c2.anchor = GridBagConstraints.LINE_END;
+        clock clock = new clock();
+        taskbarPanel.add(clock.label, c2);
+        
         // put everything together
         //frame.setLayout(new GridLayout(2,1)); 
         frame.getContentPane().add(desktopPanel, BorderLayout.CENTER);
@@ -262,9 +273,13 @@ public class Desktop implements ActionListener {
         if(event.getActionCommand().equals(exit)) {
             int reply = JOptionPane.showConfirmDialog(null, "Do You Really Want To Exit???", null, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
-            else {
+
+                try {
+                    Thread.sleep(1000);
+                    System.exit(0);
+                } catch (Exception e) {
+                }
+            } else {
                 return;
             }
         }
