@@ -25,7 +25,6 @@ public class Desktop implements ActionListener {
     String Sorter;
     String Cricket;
     String RockPaperScissors;
-    String Clock;
     String Quiz;
     String BattleGame;
     String exit;
@@ -36,7 +35,6 @@ public class Desktop implements ActionListener {
     JButton b4;
     JButton b5;
     JButton b6;
-    JButton b7;
 
     JButton shutDownButton;
 
@@ -50,7 +48,6 @@ public class Desktop implements ActionListener {
         Sorter = "Sorter";
         Cricket = "Cricket";
         RockPaperScissors = "RPS";
-        Clock = "Clock";
         Quiz = "Quiz";
         BattleGame = "Battle";
         exit = "SHUT DOWN";
@@ -78,10 +75,6 @@ public class Desktop implements ActionListener {
         Image rps_Image = icon4.getImage();
         Image RPS_Image = rps_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
-        ImageIcon icon5 = new ImageIcon((getClass().getResource("watch.png"))); // the icon of watch
-        Image cl_Image = icon5.getImage();
-        Image clock_Image = cl_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-
         ImageIcon icon6 = new ImageIcon((getClass().getResource("quiz.png"))); // the icon of quiz
         Image q_Image = icon6.getImage();
         Image quiz_Image = q_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -100,9 +93,8 @@ public class Desktop implements ActionListener {
         b2=new JButton(new ImageIcon(sort_Image));
         b3=new JButton(new ImageIcon(cricket_Image));
         b4=new JButton(new ImageIcon(RPS_Image));
-        b5=new JButton(new ImageIcon(clock_Image));
-        b6=new JButton(new ImageIcon(quiz_Image));
-        b7=new JButton(new ImageIcon(BattleShip_Image));
+        b5=new JButton(new ImageIcon(quiz_Image));
+        b6=new JButton(new ImageIcon(BattleShip_Image));
 
         shutDownButton = new JButton(exit);
 
@@ -126,9 +118,6 @@ public class Desktop implements ActionListener {
         b6.setBorderPainted(false);
         b6.setBorder(null);
 
-        b7.setBorderPainted(false);
-        b7.setBorder(null);
-
         shutDownButton.setBackground(Color.GRAY);
         shutDownButton.setForeground(Color.BLACK);
 
@@ -138,9 +127,8 @@ public class Desktop implements ActionListener {
         b2.setActionCommand(Sorter);
         b3.setActionCommand(Cricket);
         b4.setActionCommand(RockPaperScissors);
-        b5.setActionCommand(Clock);
-        b6.setActionCommand(Quiz);
-        b7.setActionCommand(BattleGame);
+        b5.setActionCommand(Quiz);
+        b6.setActionCommand(BattleGame);
 
         shutDownButton.setActionCommand(exit);
 
@@ -152,7 +140,6 @@ public class Desktop implements ActionListener {
         b4.addActionListener(this);
         b5.addActionListener(this);
         b6.addActionListener(this);
-        b7.addActionListener(this);
 
         shutDownButton.addActionListener(this);
         // add the wallpaper to the desktop
@@ -191,34 +178,29 @@ public class Desktop implements ActionListener {
         desktopPanel.add(b3, c);
 
         c.fill = GridBagConstraints.NONE;     
-        c.gridwidth = GridBagConstraints.RELATIVE;
-        desktopPanel.add(b4, c);
-
-        c.fill = GridBagConstraints.NONE;     
         c.gridwidth = GridBagConstraints.REMAINDER;
-        desktopPanel.add(b5, c); 
+        desktopPanel.add(b4, c);
 
         c.fill = GridBagConstraints.NONE;
         c.gridwidth = GridBagConstraints.RELATIVE;
-        desktopPanel.add(b6, c);
+        desktopPanel.add(b5, c);
 
         c.fill = GridBagConstraints.NONE; 
-        c.gridwidth = GridBagConstraints.RELATIVE;
-        desktopPanel.add(b7, c);
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        desktopPanel.add(b6, c);
 
         taskbarPanel.setLayout(new GridBagLayout());
-        
+
         GridBagConstraints c2 = new GridBagConstraints();
-        
+
         c2.anchor = GridBagConstraints.LINE_START;
         c2.weightx = 1.0;
         taskbarPanel.add(shutDownButton, c2);
-        
-        
+
         c2.anchor = GridBagConstraints.LINE_END;
         clock clock = new clock();
         taskbarPanel.add(clock.label, c2);
-        
+
         // put everything together
         //frame.setLayout(new GridLayout(2,1)); 
         frame.getContentPane().add(desktopPanel, BorderLayout.CENTER);
@@ -247,11 +229,6 @@ public class Desktop implements ActionListener {
         if (event.getActionCommand().equals(RockPaperScissors)) {
             setTasks("rps");
             RockPaperScissors newRPS = new RockPaperScissors();
-            return;
-        }
-        if (event.getActionCommand().equals(Clock)) {
-            setTasks("clock");
-            clock newClock = new clock();
             return;
         }
         if (event.getActionCommand().equals(Quiz)) {
@@ -302,10 +279,6 @@ public class Desktop implements ActionListener {
                     RockPaperScissors newRPS = new RockPaperScissors();
                     newRPS.random();
                     newRPS.obj.button();
-                    return;
-                }
-                if (name.equals("rps")) {
-                    clock newClock = new clock();
                     return;
                 }
                 if (name.equals("Quiz")) {
