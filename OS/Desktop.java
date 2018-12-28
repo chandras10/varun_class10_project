@@ -209,7 +209,6 @@ public class Desktop implements ActionListener {
         taskbarPanel.setLayout(new GridBagLayout());
         
         GridBagConstraints c2 = new GridBagConstraints();
-
         
         c2.anchor = GridBagConstraints.LINE_START;
         c2.weightx = 1.0;
@@ -225,15 +224,8 @@ public class Desktop implements ActionListener {
         frame.getContentPane().add(desktopPanel, BorderLayout.CENTER);
         frame.getContentPane().add(taskbarPanel, BorderLayout.SOUTH);
 
-        frame.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    System.exit(0);
-                }
-            });
-
         frame.setVisible(true);    
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);   
     }
 
     public void actionPerformed(ActionEvent event) {
