@@ -3,6 +3,8 @@ package OS;
 import java.util.*;
 import java.io.*;
 
+import java.lang.management.ManagementFactory;
+
 public class Quiz{
 
     public void startQuiz()
@@ -12,8 +14,13 @@ public class Quiz{
         String line = "";
         String cvsSplitBy = ",";
 
+        System.out.print("\u000C");
+        
         Map<String, List<String>> qm = new HashMap<String, List<String>>();
 
+        Scanner sc=new Scanner(System.in);
+        //sc.nextLine();
+        
         try {
             br = new BufferedReader(new FileReader(csvFile));
             int counter =0;
@@ -39,6 +46,7 @@ public class Quiz{
             String qkey = "";
             System.out.println("Welcome to Quiz. Enter the answer as A/B/C/D. Good Luck!");
             System.out.println("Press Q to quit");
+
             for(int j=1;j<=15;j++)
             {
                 qnum=(int)(Math.random()*100);
@@ -62,7 +70,7 @@ public class Quiz{
 
                     for(;;){
                         System.out.println("Enter your option:");
-                        Scanner sc=new Scanner(System.in);
+                        
                         ch=sc.nextLine();
                         if(ch.equalsIgnoreCase("A")||ch.equalsIgnoreCase("B")||
                         ch.equalsIgnoreCase("C")||ch.equalsIgnoreCase("D")){
@@ -71,7 +79,9 @@ public class Quiz{
                         else{
                             if(ch.equalsIgnoreCase("Q")) {
                                 System.out.println("You Gave Up :(");
-                                System.exit(0);
+                                
+                                Thread.currentThread().interrupt();
+                                return;
                             }
                             System.out.println("Enter A,B,C,D only");
                             continue;
@@ -103,6 +113,7 @@ public class Quiz{
             }
 
         }
-        System.exit(0);
+        
     }
+    
 }
