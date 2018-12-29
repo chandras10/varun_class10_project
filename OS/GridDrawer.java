@@ -20,8 +20,7 @@ public class GridDrawer extends JPanel{
         frame = new JFrame();  
         // setting the frame size to fill the screen
 
-        frame.setSize(500, 500);
-        //frame.setSize(screenSize.width, screenSize.height);
+        frame.setSize(screenSize.width, screenSize.height);
 
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
@@ -82,15 +81,15 @@ public class GridDrawer extends JPanel{
             }
 
             gap = (width/7) * 6;
-            
+
             g.drawString(alphabets[j], (width/100) + gap + (circleWidth*2), height/100 + YGap + (circleWidth/2));
             YGap += (height/7);
             gap = 0;
         }
-        
+
         for (int k = 0; k < numbersX.length; k ++) {
             gap += width/7;
-            g.drawString(Integer.toString(numbersX[k]),width/100 + gap - (circleWidth*2), height/100 + YGap - circleWidth/4);
+            g.drawString(Integer.toString(numbersX[k]),(int)(width/100 + gap - (circleWidth*2.15)), height/100 + YGap - circleWidth/5);
         }
     }
 
