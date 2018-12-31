@@ -45,7 +45,6 @@ public class BattleGameLauncher {
 
         } // end for
 
-        
         startPlaying();
     } // end setUpGame method
 
@@ -56,7 +55,9 @@ public class BattleGameLauncher {
             userGuess = helper.getUserInput();
             if(userGuess.equalsIgnoreCase("Quit")) {
                 System.out.println("You gave up :(");
-                System.exit(0);
+                theGrid.frame.setVisible(false);
+                Thread.currentThread().interrupt();
+                return;
             }
             checkUserGuess(userGuess);
 
@@ -85,22 +86,23 @@ public class BattleGameLauncher {
                 System.out.println("You sunk: "+ enemyToSet.getName() + "\n");
                 break;
             }
-            
+
         } // end for
 
         if (shipSunk == true) {
-                shipSunk = false;
-            } else {
-                System.out.println(result+"\n");
-            }
-        
+            shipSunk = false;
+        } else {
+            System.out.println(result+"\n");
+        }
+
     } //end checkUserGuess method
 
     public void finishGame() {
 
         System.out.println("GAME OVER");
         System.out.println("\n\t\tYou took: " + numOfGuesses + " guesses :|");
-        System.exit(0);
+        theGrid.frame.setVisible(false);
+        Thread.currentThread().interrupt();
 
     }// end finish game method
 }// end class

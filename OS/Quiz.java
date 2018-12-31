@@ -79,7 +79,6 @@ public class Quiz{
                         else{
                             if(ch.equalsIgnoreCase("Q")) {
                                 System.out.println("You Gave Up :(");
-                                
                                 Thread.currentThread().interrupt();
                                 return;
                             }
