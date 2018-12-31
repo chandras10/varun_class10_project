@@ -240,6 +240,7 @@ public class Desktop implements ActionListener {
             return;
         }
         if(event.getActionCommand().equals(exit)) {
+            frame.setAlwaysOnTop(false);
             int reply = JOptionPane.showConfirmDialog(null, "Do You Really Want To Exit???", null, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
 
@@ -261,34 +262,43 @@ public class Desktop implements ActionListener {
             public void run() {
 
                 if (name.equals("Cal")) {
+                    frame.setAlwaysOnTop(false);
                     Calculator newCal = new Calculator();
                     newCal.setVisible(true);
                     return;
                 }
                 if (name.equals("sorter")) {
+                    frame.setAlwaysOnTop(false);
                     Sorter newSort = new Sorter();
                     newSort.createAndShowGUI();
                     return;
                 }
                 if (name.equals("cricket")) {
+                    frame.setAlwaysOnTop(false);
                     Cricket newCricket = new Cricket();
                     newCricket.startPlaying();
+                    frame.setAlwaysOnTop(true);
                     return;
                 }
                 if (name.equals("rps")) {
+                    frame.setAlwaysOnTop(false);
                     RockPaperScissors newRPS = new RockPaperScissors();
                     newRPS.random();
                     newRPS.obj.button();
                     return;
                 }
                 if (name.equals("Quiz")) {
+                    frame.setAlwaysOnTop(false);
                     Quiz newQuiz = new Quiz();
                     newQuiz.startQuiz();
+                    frame.setAlwaysOnTop(true);
                     return;
                 }
                 if (name.equals("BG")) {
+                    frame.setAlwaysOnTop(false);
                     BattleGameLauncher newBattleGame = new BattleGameLauncher();
                     newBattleGame.setUpGame();
+                    frame.setAlwaysOnTop(true);
                     return;
                 }
             }// end run

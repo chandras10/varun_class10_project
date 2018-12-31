@@ -16,6 +16,7 @@ class Cricket
 
     static void batting()
     {
+        
         System.out.println("You are batting");
 
         for(;;)
@@ -140,6 +141,7 @@ class Cricket
 
     public void startPlaying()
     {
+        System.out.print("\u000C");
         for(;;){
             System.out.println("\t\t\t\tTOSS\n");
             System.out.println("\t\t\t\t1.Odd");

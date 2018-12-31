@@ -19,6 +19,7 @@ public class BattleGameLauncher {
 
     public void setUpGame() {
 
+        System.out.print("\u000C");
         BattleGame enemy1 = new BattleGame();
         BattleGame enemy2 = new BattleGame();   //make three Battle game objects , i.e the battleships
         BattleGame enemy3 = new BattleGame();
