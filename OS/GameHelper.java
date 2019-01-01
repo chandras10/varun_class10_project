@@ -10,10 +10,10 @@ public class GameHelper {
     private int gridSize = 49;
     private int [] grid = new int[gridSize];
     private int enemyCount = 0;
-    public String getUserInput() {
+    public String getUserInput(String prompt) {
         
         String inputLine = "";
-        System.out.print("Enter a guess: \t");
+        System.out.print(prompt);
         Scanner sc = new Scanner(System.in);                        
         inputLine = sc.next();
         System.out.println();
@@ -23,6 +23,17 @@ public class GameHelper {
         
         return(inputLine.toLowerCase());
         
+    }
+    
+    public String compGuess() {
+        String computerGuess = "";
+        String temp = "";
+        int location = (int)(Math.random() * gridLength);
+        temp = Integer.toString(location);
+        String yCoord = Character.toString(alphabet.charAt((int)(Math.random() * gridLength)));
+        computerGuess = yCoord.concat(temp);
+        //System.out.println("The computer guess is : " + computerGuess);
+        return(computerGuess);
     }
     
     public ArrayList<String> placeEnemy(int enemySize) {
@@ -43,7 +54,7 @@ public class GameHelper {
         while( !success & attempts++ < 200) {
             
             location = (int)(Math.random() * gridSize);
-            System.out.print(" try " + location);
+            //System.out.print(" try " + location);
             int x = 0;
             success = true;
             
@@ -60,7 +71,7 @@ public class GameHelper {
                         success = false;
                     }
                 } else {
-                    System.out.print("  used " + location);
+                    //System.out.print("  used " + location);
                     success = false;
                 }
             } // end inner while
@@ -80,10 +91,10 @@ public class GameHelper {
             
             alphaCells.add(temp.concat(Integer.toString(row)));
             x++;
-            System.out.print("   coord "+x+" = " + alphaCells.get(x-1));
+            //System.out.print("   coord "+x+" = " + alphaCells.get(x-1));
         } // end while
         
-        System.out.println( "\n");
+        //System.out.println( "\n");
         
         return (alphaCells);
     } // end constructor
