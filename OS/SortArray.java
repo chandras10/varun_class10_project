@@ -5,12 +5,13 @@ package OS;
 import java.util.Random;
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.Color;
 import javax.swing.JComponent;
 import java.util.concurrent.TimeUnit;
 import java.awt.Dimension;
 
-public class SortArray extends JComponent{
+public class SortArray extends JPanel{
 
     // instance variables
 
@@ -19,29 +20,16 @@ public class SortArray extends JComponent{
     private int m_swapCount = 0;
     private int m_compareCount = 0;
    
-    private int barWidth = 0;
-    private int barHeight = 0;
 
     // constructers
 
-    public SortArray (int size, int width, int height) {
-
+    public SortArray (int size) {
         m_values = new int[size];
         m_state = new boolean[size];
         for (int i = 0; i < m_values.length; i++) {
             m_values[i] = i + 1;
             m_state[i] = false;
         }
-
-        barWidth = Math.max(width/this.length(), 5);
-        barHeight = 10;
-         
-        Dimension windowSize = new Dimension(
-                                        (barWidth + 5) * (size+1), //leave additional bar space to make the last bar label visible 
-                                        (barHeight * (size + 20)));
-        this.setPreferredSize(windowSize);
-        
-        
     }
 
     // methods
@@ -113,9 +101,15 @@ public class SortArray extends JComponent{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int len = this.length();
+        int len = m_values.length;
+        if (len <= 0) {
+            return;
+        }
+
         int width = this.getWidth();
         int height = this.getHeight();
+        int barWidth = 20;
+        int barHeight = 10;
 
         g.fillRect(0, 0, width, height);
 
@@ -124,9 +118,9 @@ public class SortArray extends JComponent{
        
         for (int a = 0; a < len; a++) {
 
-            if(m_state[a] == true)
+            if(m_state[a] == true) {
                 g.setColor(Color.red);
-            else
+            } else
                 g.setColor(Color.orange);
 
             j = (m_values[a]+1) * barHeight; //Scaling the array value to make the bars visible
@@ -136,11 +130,16 @@ public class SortArray extends JComponent{
             k += barWidth + 5;
 
         }
-
     }
 
     public void printCounters(SortArray array) {
         System.out.println("Compare#: " + this.getCompareCount() + "\t Swap#: " + this.getSwapCount());
+    }
+
+    public void clearState() {
+        for (int i=0; i < length(); i++)
+            m_state[i] = false;
+        revalidate();
     }
 
     public static final Random random = new Random();

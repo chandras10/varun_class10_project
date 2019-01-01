@@ -21,7 +21,7 @@ public class Sorter extends JPanel implements ActionListener {
 
     protected static final JTextField sortArraySizeField = new JTextField(10);
 
-    protected static JScrollPane sortArrayScrollPane;
+    protected static SortArrayPanel sortArrayScrollPane;
     protected static JComboBox algorithmComboBox;
 
     protected static JLabel compareCount;
@@ -112,9 +112,8 @@ public class Sorter extends JPanel implements ActionListener {
                                 BorderFactory.createEmptyBorder(5,5,5,5)));
 
         // Create Sort Array visualization pane
-        SortArray s = new SortArray(1,1,1);
-        s.setPreferredSize(new Dimension(500, 500));
-        sortArrayScrollPane = new JScrollPane(s);
+        sortArrayScrollPane = new SortArrayPanel(0, 300, 300);
+        sortArray = sortArrayScrollPane.getArray();
 
         
         sortArrayScrollPane.setBorder(
@@ -204,9 +203,16 @@ public class Sorter extends JPanel implements ActionListener {
             }
 
             public void run() {
-                sortArray = new SortArray(n, o.sortArrayScrollPane.getWidth(), o.sortArrayScrollPane.getHeight());
-                sortArray.shuffle();
-                o.sortArrayScrollPane.setViewportView(sortArray);
+
+                JPanel parent = (JPanel)sortArrayScrollPane.getParent();
+                sortArrayScrollPane = new SortArrayPanel(n, o.sortArrayScrollPane.getWidth(), o.sortArrayScrollPane.getHeight());
+                sortArray = sortArrayScrollPane.getArray();
+                parent.add (BorderLayout.CENTER, sortArrayScrollPane);
+                parent.revalidate();
+
+                SortArray sortArray = sortArrayScrollPane.getArray();
+                sortArrayScrollPane.getArray().shuffle();
+
                 
 
                 int choice = o.algorithmComboBox.getSelectedIndex();
@@ -220,6 +226,7 @@ public class Sorter extends JPanel implements ActionListener {
                         break;
                 } // end switch
                 algo.sort(sortArray);
+                sortArray.clearState();
 
                 o.compareCount.setText(new Integer(sortArray.getCompareCount()).toString());
                 o.swapCount.setText(new Integer(sortArray.getSwapCount()).toString());
@@ -249,7 +256,7 @@ public class Sorter extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
-    /*public static void main() {
+    public static void main(String[] args) {
         //Schedule a job for the event dispatching thread:
         //creating and showing this application's GUI.
         SwingUtilities.invokeLater(new Runnable() {
@@ -259,5 +266,5 @@ public class Sorter extends JPanel implements ActionListener {
                 createAndShowGUI();
             }
         });
-    }*/
+    }
 }
