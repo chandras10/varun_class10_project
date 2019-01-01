@@ -59,19 +59,19 @@ public class Desktop implements ActionListener {
 
         // Resizing the images
 
-        ImageIcon icon1 = new ImageIcon((getClass().getResource("calcul.png"))); // the icon of calculator
+        ImageIcon icon1 = new ImageIcon((getClass().getResource("calc.png"))); // the icon of calculator
         Image cal_Image = icon1.getImage();
         Image calculator_Image = cal_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
-        ImageIcon icon2 = new ImageIcon((getClass().getResource("sort.jpg"))); // the icon of sorter
+        ImageIcon icon2 = new ImageIcon((getClass().getResource("sort.png"))); // the icon of sorter
         Image s_Image = icon2.getImage();
         Image sort_Image = s_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
-        ImageIcon icon3 = new ImageIcon((getClass().getResource("cri.jpg"))); // the icon of cricket
+        ImageIcon icon3 = new ImageIcon((getClass().getResource("cricket.png"))); // the icon of cricket
         Image cri_Image = icon3.getImage();
         Image cricket_Image = cri_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
-        ImageIcon icon4 = new ImageIcon((getClass().getResource("rps.png"))); // the icon of rock, paper, scissors
+        ImageIcon icon4 = new ImageIcon((getClass().getResource("rps (2).png"))); // the icon of rock, paper, scissors
         Image rps_Image = icon4.getImage();
         Image RPS_Image = rps_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
@@ -79,13 +79,9 @@ public class Desktop implements ActionListener {
         Image q_Image = icon6.getImage();
         Image quiz_Image = q_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
-        ImageIcon icon7 = new ImageIcon((getClass().getResource("battleship.jpg"))); // the icon of battleship game
+        ImageIcon icon7 = new ImageIcon((getClass().getResource("How to make a Battleship game in Java.jpg"))); // the icon of battleship game
         Image b_Image = icon7.getImage();
         Image BattleShip_Image = b_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-
-        ImageIcon wallpaper = new ImageIcon((getClass().getResource("background.jpg"))); // the icon of wallpaper
-        Image wp = wallpaper.getImage();
-        Image WallPaper = wp.getScaledInstance(screenSize.width, screenSize.height, Image.SCALE_SMOOTH);
 
         // create the buttons
 
@@ -143,7 +139,6 @@ public class Desktop implements ActionListener {
 
         shutDownButton.addActionListener(this);
         // add the wallpaper to the desktop
-        JLabel desktop_Wallpaper = new JLabel(new ImageIcon(WallPaper));
         desktopPanel.setBackground(Color.black);
 
         // add the buttons to the Panel
