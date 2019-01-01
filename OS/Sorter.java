@@ -112,7 +112,7 @@ public class Sorter extends JPanel implements ActionListener {
                                 BorderFactory.createEmptyBorder(5,5,5,5)));
 
         // Create Sort Array visualization pane
-        sortArrayScrollPane = new SortArrayPanel(0, 300, 300);
+        sortArrayScrollPane = new SortArrayPanel(100, 300, 300);
         sortArray = sortArrayScrollPane.getArray();
 
         
@@ -203,14 +203,9 @@ public class Sorter extends JPanel implements ActionListener {
             }
 
             public void run() {
+                sortArray = new SortArray(n);
+                sortArrayScrollPane.setArray(sortArray);
 
-                JPanel parent = (JPanel)sortArrayScrollPane.getParent();
-                sortArrayScrollPane = new SortArrayPanel(n, o.sortArrayScrollPane.getWidth(), o.sortArrayScrollPane.getHeight());
-                sortArray = sortArrayScrollPane.getArray();
-                parent.add (BorderLayout.CENTER, sortArrayScrollPane);
-                parent.revalidate();
-
-                SortArray sortArray = sortArrayScrollPane.getArray();
                 sortArrayScrollPane.getArray().shuffle();
 
                 
