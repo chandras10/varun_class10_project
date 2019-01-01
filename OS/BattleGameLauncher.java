@@ -78,11 +78,11 @@ public class BattleGameLauncher {
             result = enemyToSet.checkYourself(userGuess);
 
             if(result.equals("hit")) {
-                theGrid.setState(true, userGuess);
+                theGrid.g1.setState(true, userGuess);
                 break;
             }else if(result.equals("sunk")){
                 enemyList.remove(enemyToSet);
-                theGrid.setState(true, userGuess);
+                theGrid.g1.setState(true, userGuess);
                 shipSunk = true;
                 System.out.println("You sunk: "+ enemyToSet.getName() + "\n");
                 break;
