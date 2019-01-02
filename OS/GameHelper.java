@@ -32,6 +32,7 @@ public class GameHelper {
         temp = Integer.toString(location);
         String yCoord = Character.toString(alphabet.charAt((int)(Math.random() * gridLength)));
         computerGuess = yCoord.concat(temp);
+        //System.out.println("The computer guess is : " + computerGuess);
         return(computerGuess);
     }
     

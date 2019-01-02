@@ -71,7 +71,7 @@ public class Desktop implements ActionListener {
         Image cri_Image = icon3.getImage();
         Image cricket_Image = cri_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
-        ImageIcon icon4 = new ImageIcon((getClass().getResource("RPS.png"))); // the icon of rock, paper, scissors
+        ImageIcon icon4 = new ImageIcon((getClass().getResource("rps (2).png"))); // the icon of rock, paper, scissors
         Image rps_Image = icon4.getImage();
         Image RPS_Image = rps_Image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 

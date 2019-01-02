@@ -22,7 +22,7 @@ public class GridDrawer extends JPanel{
         frame = new JFrame(); 
         userGrid = new JPanel();
         enemyGrid = new JPanel();
-        
+
         user = new JLabel("Your BattleShips");
         enemy = new JLabel("Comp BattleShips");
         
@@ -30,7 +30,7 @@ public class GridDrawer extends JPanel{
         enemyResult = new JLabel("");
         
         ComputerGuess = new JLabel("");
-
+        
         frame.setLayout(new GridBagLayout());
         // setting the frame size to fill the screen
 

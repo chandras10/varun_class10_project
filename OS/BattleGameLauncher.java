@@ -59,11 +59,17 @@ public class BattleGameLauncher {
             ArrayList<String> newLocation = helper.placeEnemy(3);
             enemyToSet.setLocationCells(newLocation);
 
+            System.out.println("The Enemy Location: ");
+            System.out.print(enemyToSet.locationCells + "\t");;
+
         } // end for
 
         for (BattleGame userToSet : userList) {
 
-            ArrayList<String> newLocation = helper.placeEnemy(3);
+            ArrayList<String> newLocation = helper.placeEnemy(3);//new ArrayList<String>();
+            /*newLocation.add("a2");
+            newLocation.add("b2");
+            newLocation.add("c2");*/
             
             userToSet.setLocationCells(newLocation);
 
