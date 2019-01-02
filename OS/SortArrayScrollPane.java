@@ -5,12 +5,12 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 
-public class SortArrayPanel extends JPanel {
+public class SortArrayScrollPane extends JPanel {
     private Dimension area; //indicates area taken up by graphics
     private SortArray sortarray;
     private JScrollPane scroller;
 
-    public SortArrayPanel(int size, int width, int height) {
+    public SortArrayScrollPane(int size, int width, int height) {
         super(new BorderLayout());
 
         area = new Dimension(0,0);

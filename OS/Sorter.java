@@ -21,7 +21,7 @@ public class Sorter extends JPanel implements ActionListener {
 
     protected static final JTextField sortArraySizeField = new JTextField(10);
 
-    protected static SortArrayPanel sortArrayScrollPane;
+    protected static SortArrayScrollPane sortArrayScrollPane;
     protected static JComboBox algorithmComboBox;
 
     protected static JLabel compareCount;
@@ -112,7 +112,7 @@ public class Sorter extends JPanel implements ActionListener {
                                 BorderFactory.createEmptyBorder(5,5,5,5)));
 
         // Create Sort Array visualization pane
-        sortArrayScrollPane = new SortArrayPanel(0, 300, 300);
+        sortArrayScrollPane = new SortArrayScrollPane(0, 300, 300);
         sortArray = sortArrayScrollPane.getArray();
 
         
