@@ -8,17 +8,17 @@ public class BattleGameLauncher {
 
     // instance variables
 
-    GameHelper helper = new GameHelper();
+    private GameHelper helper = new GameHelper();
     private ArrayList<BattleGame> enemyList = new ArrayList<BattleGame>();
     private ArrayList<BattleGame> userList = new ArrayList<BattleGame>();
 
     private int numOfGuesses = 0;
-    String userGuess = "";
-    String compGuess = "";
+    private String userGuess = "";
+    private String compGuess = "";
 
-    boolean shipSunk = false;
+    private boolean shipSunk = false;
 
-    GridDrawer theGrid;
+    private GridDrawer theGrid;
 
     public void setUpGame() {
 

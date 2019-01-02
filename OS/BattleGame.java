@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class BattleGame {
 
     public ArrayList<String> locationCells;
-    public boolean state[] = new boolean[3];
+    private boolean state[] = new boolean[3];
     private String name;
 
     BattleGame() {

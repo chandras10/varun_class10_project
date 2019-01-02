@@ -6,10 +6,10 @@ import java.awt.event.*;
 import java.util.*;
 
 public class Grid extends JPanel{
-    int columns = 7;
-    int rows = 7;
+    private int columns = 7;
+    private int rows = 7;
 
-    boolean state[][] = new boolean[columns][rows];
+    private boolean state[][] = new boolean[columns][rows];
     
     public void userGrid() {
         for (int i = 0; i < columns; i++) {

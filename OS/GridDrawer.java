@@ -7,13 +7,13 @@ import java.util.*;
 
 public class GridDrawer extends JPanel{
 
-    JFrame frame;
-    JPanel userGrid, enemyGrid;
+    protected JFrame frame;
+    private JPanel userGrid, enemyGrid;
     
-    Grid g1;
-    Grid g2;
+    protected Grid g1;
+    protected Grid g2;
 
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     public void setUpGrid() {
 
