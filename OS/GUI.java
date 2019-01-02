@@ -7,9 +7,9 @@ import java.awt.event.ActionEvent;
 
 class GUI extends JFrame 
 {
-    JButton button1 = new JButton("ROCK");
-    JButton button2 = new JButton("PAPER");
-    JButton button3 = new JButton("SCISSORS");
+    private JButton button1 = new JButton("ROCK");
+    private JButton button2 = new JButton("PAPER");
+    private JButton button3 = new JButton("SCISSORS");
 
     JFrame frame = new JFrame();
     static RockPaperScissors call;
@@ -23,7 +23,7 @@ class GUI extends JFrame
 
     JLabel PlayerScore = new JLabel("   YOUR SCORE: 0");
     JLabel end = new JLabel("");
-    JLabel CompScore = new JLabel("     MY SCORE: 0");
+    JLabel CompScore = new JLabel("COMP SCORE: 0");
     JLabel beg = new JLabel ("HELLO! THIS WILL BE A BEST OF 10 MATCHES.");
     JLabel Comp = new JLabel("        COMP:");
     JLabel Player = new JLabel("      YOU:");
@@ -34,7 +34,7 @@ class GUI extends JFrame
 
         frame.setTitle("Rock Paper Scissors");
 
-        frame.setLayout(new FlowLayout(3));
+        frame.setLayout(new FlowLayout(3,10,10));
 
         frame.setLocation(FRAME_X,FRAME_Y);
         frame.add(beg);
@@ -50,7 +50,7 @@ class GUI extends JFrame
 
         frame.setResizable(false);
 
-        frame.setSize(304,150);
+        frame.setSize(340,190);
         frame.setVisible(true);
 
     }
@@ -72,7 +72,7 @@ class GUI extends JFrame
                     PlayerScore.setText("   YOUR SCORE: "+call1.player.score);
                     CompScore.setText("     COMP SCORE: "+call1.comp.score);
                     Player.setText("      YOU: ROCK");
-                    Comp.setText("        ME: "+call1.r);
+                    Comp.setText("        COMP: "+call1.r);
                     if(call1.count == 10)
                     {
                         button1.setEnabled(false);
@@ -107,7 +107,7 @@ class GUI extends JFrame
                     PlayerScore.setText("   YOUR SCORE: "+call1.player.score);
                     CompScore.setText("     COMP SCORE: "+call1.comp.score);
                     Player.setText("      YOU: PAPER");
-                    Comp.setText("        ME:"+call1.r);
+                    Comp.setText("        COMP:"+call1.r);
                     if(call1.count == 10)
                     {
                         button1.setEnabled(false);

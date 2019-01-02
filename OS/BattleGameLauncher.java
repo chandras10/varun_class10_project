@@ -59,17 +59,11 @@ public class BattleGameLauncher {
             ArrayList<String> newLocation = helper.placeEnemy(3);
             enemyToSet.setLocationCells(newLocation);
 
-            System.out.println("The Enemy Location: ");
-            System.out.print(enemyToSet.locationCells + "\t");;
-
         } // end for
 
         for (BattleGame userToSet : userList) {
 
-            ArrayList<String> newLocation = helper.placeEnemy(3);//new ArrayList<String>();
-            /*newLocation.add("a2");
-            newLocation.add("b2");
-            newLocation.add("c2");*/
+            ArrayList<String> newLocation = helper.placeEnemy(3);
             
             userToSet.setLocationCells(newLocation);
 
@@ -121,40 +115,38 @@ public class BattleGameLauncher {
 
                 if(result.equals("hit")) {
                     theGrid.g1.setState(true, guess);
+                    theGrid.userResult.setText(result);
                     break;
                 }else if(result.equals("sunk")){
                     list.remove(enemyToSet);
                     theGrid.g1.setState(true, guess);
                     shipSunk = true;
-                    System.out.println("You sunk: "+ enemyToSet.getName() + "\n");
+                    theGrid.userResult.setText("You sunk: "+ enemyToSet.getName() + "\n");
                     break;
                 }
+                theGrid.userResult.setText(result);
             } // end for
 
         } else if (list == userList) {
 
             for (BattleGame enemyToSet: userList) {
                 result = enemyToSet.checkYourself(guess);
-                
+                theGrid.ComputerGuess.setText("The Computer guessed " + guess);
                 if(result.equals("hit")) {
                     theGrid.g2.setState(true, guess);
+                    theGrid.enemyResult.setText(result);
                     break;
                 }else if(result.equals("sunk")){
                     list.remove(enemyToSet);
                     theGrid.g2.setState(true, guess);
                     shipSunk = true;
                     theGrid.g2.repaint();
-                    System.out.println("You sunk: "+ enemyToSet.getName() + "\n");
+                    theGrid.enemyResult.setText("You sunk: "+ enemyToSet.getName() + "\n");
                     break;
                 }
+                theGrid.enemyResult.setText(result);
             } // end for
 
-        }
-
-        if (shipSunk == true) {
-            shipSunk = false;
-        } else {
-            System.out.println(result+"\n");
         }
 
     } //end checkUserGuess method

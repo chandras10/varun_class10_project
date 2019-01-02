@@ -10,6 +10,8 @@ public class GridDrawer extends JPanel{
     protected JFrame frame;
     private JPanel userGrid, enemyGrid;
     
+    protected JLabel user, enemy, userResult, enemyResult, ComputerGuess;
+    
     protected Grid g1;
     protected Grid g2;
 
@@ -20,6 +22,14 @@ public class GridDrawer extends JPanel{
         frame = new JFrame(); 
         userGrid = new JPanel();
         enemyGrid = new JPanel();
+        
+        user = new JLabel("Your BattleShips");
+        enemy = new JLabel("Comp BattleShips");
+        
+        userResult = new JLabel("");
+        enemyResult = new JLabel("");
+        
+        ComputerGuess = new JLabel("");
 
         frame.setLayout(new GridBagLayout());
         // setting the frame size to fill the screen
@@ -57,6 +67,29 @@ public class GridDrawer extends JPanel{
         c.gridx = 1;
         c.gridy = 0;
         frame.add(enemyGrid, c);
+        
+        c.gridx = 0;
+        c.gridy = 1;
+        frame.add(user, c);
+        
+        c.gridx = 1;
+        c.gridy = 1;
+        frame.add(enemy, c);
+        
+        c.weighty = 1.0;
+        c.gridx = 0;
+        c.gridy = 2;
+        frame.add(userResult, c);
+        
+        c.gridx = 1;
+        c.gridy = 2;
+        frame.add(enemyResult, c);
+        
+        c.weighty = 0.5;
+        c.gridx = 0;
+        c.gridy = 3;
+        c.gridwidth = 2;
+        frame.add(ComputerGuess, c);
 
         frame.setVisible(true);
     }

@@ -14,21 +14,21 @@ import javax.*;
 class RockPaperScissors extends JFrame 
 {
    
-    static RockPaperScissors call;
+    private static RockPaperScissors call;
     
 
-    static int count;
-    static String r;
+    protected static int count;
+    protected static String r;
 
     static GUI obj = new GUI();
 
     static RockPaperScissors comp = new RockPaperScissors();
     static RockPaperScissors player = new RockPaperScissors();
-    int score;
+    protected int score;
 
     public static void random()
     {
-        int rr = (int)((Math.random()*(3-1)+1));
+        int rr = (int)((Math.random()*(4-1)+1));
 
         if(rr == 1)
             r = "ROCK";
